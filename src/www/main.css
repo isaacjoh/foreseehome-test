@@ -17,7 +17,7 @@ h1 {
   margin: 0;
 }
 
-h2, h3, h4, h5, h6, p, input, label {
+h2, h3, h4, h5, h6, p, input, label, div {
   font-family: 'acherus_grotesque_regular' !important;
 }
 
