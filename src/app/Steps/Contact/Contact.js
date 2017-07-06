@@ -13,7 +13,7 @@ import MenuItem from 'material-ui/MenuItem';
 
 import StepButtons from '../../Components/StepButtons';
 
-const states = ['AL','AK','AZ','AS','AR','CA','CO','CT','DC','DE','FL','GA','GU','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','PR','PW','RI','SC','SD','TN','TX','UT','VT','VA','VI','WA','WV','WI','WY'];
+const states = ['AA','AE','AL','AK','AP','AZ','AS','AR','CA','CO','CT','DC','DE','FL','FM','GA','GU','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MH','MI','MN','MP','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','PR','PW','RI','SC','SD','TN','TX','UT','VT','VA','VI','WA','WV','WI','WY'];
 
 Formsy.addValidationRule('isValidState', (values, value) => {
   if (value) {
@@ -135,7 +135,7 @@ const Contact = React.createClass({
                 <FormsyText name="city"
                             value={this.props.fieldValues.city}
                             floatingLabelText="City *"
-                            validations="isWords"
+                            validations={{matchRegexp: /^([A-Za-z\- ]+)$/}}
                             validationError={wordError}
                             required
                             ref={(city) => {this._city = city}}

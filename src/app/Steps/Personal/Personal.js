@@ -21,7 +21,7 @@ const Personal = React.createClass({
   },
 
   errorMessages: {
-    wordsError: "Please only use letters",
+    wordsError: "Please use only letters",
     numericError: "Please provide a number",
     dobError: "Please check the date format",
   },
@@ -91,7 +91,7 @@ const Personal = React.createClass({
               <FormsyText
                 name="full name"
                 value={this.props.fieldValues.name}
-                validations="isWords"
+                validations={{matchRegexp: /^([A-Za-z\-\. ]+)$/}}
                 validationError={wordsError}
                 required
                 hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
