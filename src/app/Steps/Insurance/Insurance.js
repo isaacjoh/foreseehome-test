@@ -31,6 +31,18 @@ class Insurance extends React.Component {
     const {stepIndex} = nextState;
   }
 
+  enableButton() {
+    this.setState({
+      canSubmit: true,
+    });
+  }
+
+  disableButton() {
+    this.setState({
+      canSubmit: false,
+    });
+  }
+
   getPrimaryScreenshotSrc = (src) => {
     this.setState({primaryInsSrc: src}, () => this.onUploadComplete());
     this.props.getPrimaryScreenshotSrc(src);
@@ -49,8 +61,7 @@ class Insurance extends React.Component {
       else {
         this.setState({uploadComplete: false});
       }
-    }
-    else {
+    } else {
       if (this.state.primaryInsSrc) {
         this.setState({uploadComplete: true});
       }
@@ -63,31 +74,35 @@ class Insurance extends React.Component {
   render() {
     return (
       <div>
-        {this.props.primary === true && (
-          <div>
-            <h3>Please upload a picture of your primary insurance card</h3>
-            <UploadImage getScreenshotSrc={this.getPrimaryScreenshotSrc} />
-            <div className="spacer-small"></div>
-          </div>
-        )}
+        <Formsy.Form onValid={this.enableButton}
+                     onInvalid={this.disableButton}>
+          {this.props.primary === true && (
+            <div>
+              <h3>Please upload a picture of your primary insurance card</h3>
+              <UploadImage getScreenshotSrc={this.getPrimaryScreenshotSrc} />
+              <div className="spacer-small"></div>
+            </div>
+          )}
 
-        {this.props.secondary === true && (
-          <div>
-            <h3>Please upload a picture of your secondary insurance card</h3>
-            <UploadImage getScreenshotSrc={this.getSecondaryScreenshotSrc} />
-          </div>
-        )}
+          {this.props.secondary === true && (
+            <div>
+              <h3>Please upload a picture of your secondary insurance card</h3>
+              <UploadImage getScreenshotSrc={this.getSecondaryScreenshotSrc} />
+            </div>
+          )}
 
-        <div className="spacer-medium"></div>
+          <div className="spacer-medium"></div>
 
-        {this.state.uploadComplete && (
-          <StepButtons handleEdit={this.props.handleEdit}
-                       handleNext={this.props.handleNext}
-                       handlePrev={this.props.handlePrev}
-                       reviewing={this.props.reviewing}
-                       saveValues={this.props.saveValues}
-                       stepIndex={this.props.stepIndex} />
-        )}
+          {this.state.uploadComplete && (
+            <StepButtons handleEdit={this.props.handleEdit}
+                         handleNext={this.props.handleNext}
+                         handlePrev={this.props.handlePrev}
+                         reviewing={this.props.reviewing}
+                         saveValues={this.props.saveValues}
+                         stepIndex={this.props.stepIndex}
+                         validated={true} />
+          )}
+        </Formsy.Form>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import FormsyStub from './FormsyStub';
 
 const getStyles = () => {
   return {
@@ -45,40 +46,43 @@ class StepButtons extends React.Component {
     const styles = getStyles();
 
     return (
-      <div className="step-buttons">
-        {this.props.stepIndex !== null && !this.props.reviewing && (
-          <div style={styles.actions}>
-            <FlatButton
-              className={this.props.stepIndex !== 1 ? '' : 'hide'}
-              label="Back"
-              onTouchTap={this.handlePrev}
-              style={styles.backButton}
-            />
-            <RaisedButton
-              label={this.props.stepIndex === 4 ? 'Done!' : 'Next'}
-              primary={true}
-              onTouchTap={this.handleNext}
-              type="submit"
-            />
-          </div>
-        )}
+      <FormsyStub>
+        {<div className="step-buttons">
+          {this.props.stepIndex !== null && !this.props.reviewing && (
+            <div style={styles.actions}>
+              <FlatButton
+                className={this.props.stepIndex !== 1 ? '' : 'hide'}
+                label="Back"
+                onTouchTap={this.handlePrev}
+                style={styles.backButton}
+              />
+              <RaisedButton
+                disabled={!this.props.validated}
+                label={this.props.stepIndex === 4 ? 'Done!' : 'Next'}
+                primary={true}
+                onTouchTap={this.handleNext}
+              />
+            </div>
+          )}
 
-        {this.props.reviewing === true && (
-          <div style={styles.actions}>
-            <FlatButton
-              className={this.props.stepIndex !== 1 ? '' : 'hide'}
-              label="Back"
-              onTouchTap={this.handlePrev}
-              style={styles.backButton}
-            />
-            <RaisedButton
-              label="Save"
-              primary={true}
-              onTouchTap={() => this.handleEdit(4)}
-            />
-          </div>
-        )}
-      </div>
+          {this.props.reviewing === true && (
+            <div style={styles.actions}>
+              <FlatButton
+                className={this.props.stepIndex !== 1 ? '' : 'hide'}
+                label="Back"
+                onTouchTap={this.handlePrev}
+                style={styles.backButton}
+              />
+              <RaisedButton
+                disabled={!this.props.validated}
+                label="Save"
+                primary={true}
+                onTouchTap={() => this.handleEdit(4)}
+              />
+            </div>
+          )}
+        </div>}
+      </FormsyStub>
     )
   }
 }

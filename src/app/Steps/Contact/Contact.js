@@ -13,7 +13,19 @@ import MenuItem from 'material-ui/MenuItem';
 
 import StepButtons from '../../Components/StepButtons';
 
-const states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Federated States of Micronesia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+const states = ['AL','AK','AZ','AS','AR','CA','CO','CT','DC','DE','FL','GA','GU','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','PR','PW','RI','SC','SD','TN','TX','UT','VT','VA','VI','WA','WV','WI','WY'];
+
+Formsy.addValidationRule('isValidState', (values, value) => {
+  if (value) {
+    value = value.toUpperCase();
+  }
+
+  if (states.indexOf(value) !== -1) {
+    return true;
+  } else {
+    return false;
+  }
+});
 
 const Contact = React.createClass({
 
@@ -102,91 +114,92 @@ const Contact = React.createClass({
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
-          <h2>Step 2: Contact Information</h2>
-          <h3 style={shippingSectionStyle}>Your Shipping Address</h3>
-          <h5 style={shippingSubsectionStyle}>
-            <i>Where can we ship your ForeseeHome device?</i>
-          </h5>
-
-          <div className="fs-contact-info">
-            <div>
-              <FormsyText name="address"
-                          value={this.props.fieldValues.address}
-                          required
-                          floatingLabelText="Street Address"
-                          ref={(address) => {this._address = address}}
-                          style={inputStyle} />
-            </div>
-            <div>
-              <FormsyText name="city"
-                          value={this.props.fieldValues.city}
-                          floatingLabelText="City"
-                          validations="isWords"
-                          validationError={wordError}
-                          required
-                          ref={(city) => {this._city = city}}
-                          style={inputStyle} />
-            </div>
-            <div>
-              <FormsyText name="state"
-                          value={this.props.fieldValues.state}
-                          validations="isWords,maxLength:2"
-                          validationError={stateError}
-                          required
-                          floatingLabelText="State"
-                          hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
-                          hintText="NY"
-                          ref={(state) => {this._state = state}}
-                          style={inputStyle} />
-            </div>
-            <div>
-              <FormsyText name="zip"
-                          value={this.props.fieldValues.zip}
-                          validations={{matchRegexp: /^\d{5}(?:[-\s]\d{4})?$/}}
-                          validationError={zipError}
-                          required
-                          floatingLabelText="ZIP Code"
-                          ref={(zip) => {this._zip = zip}}
-                          style={inputStyle} />
-            </div>
-
-            <h3 style={contactSectionStyle}>Your Contact Information</h3>
-            <h5 className="phone-subtext">
-              <i>We will only contact you if we have a question regarding your shipping or insurance information.</i>
+          <Formsy.Form onValid={this.enableButton}
+                       onInvalid={this.disableButton}>
+            <h2>Step 2: Contact Information</h2>
+            <h3 style={shippingSectionStyle}>Your Shipping Address</h3>
+            <h5 style={shippingSubsectionStyle}>
+              <i>Where can we ship your ForeseeHome device?</i>
             </h5>
-            <div>
-              <FormsyText name="phone"
-                          value={this.props.fieldValues.phone}
-                          floatingLabelText="Phone Number"
-                          validations={{matchRegexp: /^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$/}}
-                          validationError={phoneError}
-                          required
-                          hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
-                          hintText="(555) 555-5555"
-                          ref={(phone) => {this._phone = phone}}
-                          style={inputStyle} />
-            </div>
-            <div>
-              <FormsyText name="email"
-                          value={this.props.fieldValues.email}
-                          validations="isEmail"
-                          validationError={emailError}
-                          required
-                          floatingLabelText="Email"
-                          ref={(email) => {this._email = email}}
-                          style={inputStyle} />
-            </div>
-          </div>
 
-          <div className="spacer-medium"></div>
-          <StepButtons data={data}
-                       handleEdit={this.props.handleEdit}
-                       handleNext={this.props.handleNext}
-                       handlePrev={this.props.handlePrev}
-                       saveValues={this.props.saveValues}
-                       stepIndex={this.props.stepIndex}
-                       reviewing={this.props.reviewing} />
+            <div className="fs-contact-info">
+              <div>
+                <FormsyText name="address"
+                            value={this.props.fieldValues.address}
+                            required
+                            floatingLabelText="Street Address *"
+                            ref={(address) => {this._address = address}}
+                            style={inputStyle} />
+              </div>
+              <div>
+                <FormsyText name="city"
+                            value={this.props.fieldValues.city}
+                            floatingLabelText="City *"
+                            validations="isWords"
+                            validationError={wordError}
+                            required
+                            ref={(city) => {this._city = city}}
+                            style={inputStyle} />
+              </div>
+              <div>
+                <FormsyText name="state"
+                            value={this.props.fieldValues.state}
+                            validations="isValidState"
+                            validationError={stateError}
+                            required
+                            floatingLabelText="State *"
+                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintText="NY"
+                            ref={(state) => {this._state = state}}
+                            style={inputStyle} />
+              </div>
+              <div>
+                <FormsyText name="zip"
+                            value={this.props.fieldValues.zip}
+                            validations={{matchRegexp: /^\d{5}(?:[-\s]\d{4})?$/}}
+                            validationError={zipError}
+                            required
+                            floatingLabelText="ZIP Code *"
+                            ref={(zip) => {this._zip = zip}}
+                            style={inputStyle} />
+              </div>
 
+              <h3 style={contactSectionStyle}>Your Contact Information</h3>
+              <h5 className="phone-subtext">
+                <i>We will only contact you if we have a question regarding your shipping or insurance information.</i>
+              </h5>
+              <div>
+                <FormsyText name="phone"
+                            value={this.props.fieldValues.phone}
+                            floatingLabelText="Phone Number"
+                            validations={{matchRegexp: /^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$/}}
+                            validationError={phoneError}
+                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintText="(555) 555-5555"
+                            ref={(phone) => {this._phone = phone}}
+                            style={inputStyle} />
+              </div>
+              <div>
+                <FormsyText name="email"
+                            value={this.props.fieldValues.email}
+                            validations="isEmail"
+                            validationError={emailError}
+                            floatingLabelText="Email"
+                            ref={(email) => {this._email = email}}
+                            style={inputStyle} />
+              </div>
+            </div>
+
+            <div className="spacer-medium"></div>
+            <StepButtons data={data}
+                         handleEdit={this.props.handleEdit}
+                         handleNext={this.props.handleNext}
+                         handlePrev={this.props.handlePrev}
+                         saveValues={this.props.saveValues}
+                         stepIndex={this.props.stepIndex}
+                         reviewing={this.props.reviewing}
+                         validated={this.state.canSubmit} />
+          </Formsy.Form>
         </Paper>
       </MuiThemeProvider>
     );

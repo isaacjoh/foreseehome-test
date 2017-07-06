@@ -84,10 +84,6 @@ class Main extends React.Component {
     });
   }
 
-  submitForm(data) {
-
-  }
-
   render() {
     const {goToForm} = this.state;
     return (
@@ -95,9 +91,9 @@ class Main extends React.Component {
       <div>
         { goToForm ? (
           <MuiThemeProvider muiTheme={muiTheme}>
-            <Formsy.Form>
+
               <HorizontalLinearStepper />
-            </Formsy.Form>
+
           </MuiThemeProvider>
           ) : (
             <MuiThemeProvider muiTheme={muiTheme}>

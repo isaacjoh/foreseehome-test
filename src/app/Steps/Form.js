@@ -9,6 +9,8 @@ import {
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
+import FormsyStub from '../Components/FormsyStub';
+
 // form components
 import Personal from './Personal/Personal';
 import Contact from './Contact/Contact';
@@ -215,9 +217,11 @@ class HorizontalLinearStepper extends React.Component {
           </Step>
         </Stepper>
 
-        <div style={styles.content}>
-          {this.getStepContent(stepIndex)}
-        </div>
+        <FormsyStub>
+          <div style={styles.content}>
+            {this.getStepContent(stepIndex)}
+          </div>
+        </FormsyStub>
       </div>
     );
   }

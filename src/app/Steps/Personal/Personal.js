@@ -12,15 +12,6 @@ import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
 
 import StepButtons from '../../Components/StepButtons';
 
-Formsy.addValidationRule('isYearOfBirth', (values, value) => {
-  value = parseInt(value);
-  if (typeof value !== 'number') {
-    return false;
-  }
-  return value < currentYear && value > currentYear - 130;
-});
-
-
 const Personal = React.createClass({
 
   getInitialState() {
@@ -72,6 +63,10 @@ const Personal = React.createClass({
     window.scrollTo(0, 0);
   },
 
+  submitForm(data, reset, update) {
+    console.log('just submit');
+  },
+
   render() {
     let {paperStyle, switchStyle, submitStyle, inputStyle } = this.styles;
     let { wordsError, numericError, dobError } = this.errorMessages;
@@ -89,8 +84,9 @@ const Personal = React.createClass({
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
+          <Formsy.Form onValid={this.enableButton}
+                       onInvalid={this.disableButton}>
             <h2>Step 1: Personal Information</h2>
-
             <div>
               <FormsyText
                 name="full name"
@@ -100,9 +96,10 @@ const Personal = React.createClass({
                 required
                 hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
                 hintText="John Doe"
-                floatingLabelText="Name"
+                floatingLabelText="Name *"
                 ref={(name) => {this._fullName = name}}
                 style={inputStyle}
+                updateImmediately
               />
             </div>
 
@@ -112,7 +109,6 @@ const Personal = React.createClass({
                 value={this.props.fieldValues.dob}
                 validations={{matchRegexp: /^([1-9]|1[012])\/([1-9]|[12][0-9]|3[01])\/(19|20)\d\d$/}}
                 validationError={dobError}
-                required
                 hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
                 hintText="MM/DD/YYYY"
                 floatingLabelText="Date of Birth"
@@ -122,7 +118,6 @@ const Personal = React.createClass({
             </div>
 
             <div className="form-element">
-              <h4 className="bold">Gender</h4>
               <FormsyRadioGroup name="gender"
                                 defaultSelected={this.props.fieldValues.gender}
                                 ref={(gender) => {this._gender = gender}}>
@@ -139,15 +134,16 @@ const Personal = React.createClass({
               </FormsyRadioGroup>
             </div>
 
-            <div className="spacer-small"></div>
+            <div className="spacer-medium"></div>
             <StepButtons data={data}
                          handleEdit={this.props.handleEdit}
                          handleNext={this.props.handleNext}
                          handlePrev={this.props.handlePrev}
                          reviewing={this.props.reviewing}
                          saveValues={this.props.saveValues}
-                         stepIndex={this.props.stepIndex} />
-
+                         stepIndex={this.props.stepIndex}
+                         validated={this.state.canSubmit} />
+          </Formsy.Form>
         </Paper>
       </MuiThemeProvider>
     );

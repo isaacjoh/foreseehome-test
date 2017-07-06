@@ -15,11 +15,6 @@ class UploadImage extends React.Component {
     };
   }
 
-  _handleSubmit(e) {
-    e.preventDefault();
-    // TODO: do something with -> this.state.file
-  }
-
   _handleImageChange(e) {
     e.preventDefault();
 
@@ -94,21 +89,12 @@ class UploadImage extends React.Component {
 
       return (
         <div className="preview-component">
-          <form className="custom-file-form" onSubmit={(e) => this._handleSubmit(e)}>
-            <label htmlFor={this.id} className="custom-file-upload">
-              Choose File
-            </label>
-            <input id={this.id}
-                  type="file"
-                  onChange={(e) => this._handleImageChange(e)} />
-
-            <RaisedButton label="Upload"
-                          disabled={!this.state.file}
-                          className="submit-button"
-                          onClick={(e) => this._handleSubmit(e)}
-                          primary={true}
-                          type="submit" />
-          </form>
+          <label htmlFor={this.id} className="custom-file-upload">
+            Choose File
+          </label>
+          <input id={this.id}
+                type="file"
+                onChange={(e) => this._handleImageChange(e)} />
           <div className={this.state.file ? 'img-preview text-center' : ''}>
             {$imagePreview}
           </div>

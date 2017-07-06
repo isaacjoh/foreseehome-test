@@ -190,8 +190,7 @@ class Medicare extends React.Component {
     if(this.state.hasOtherIns === true) {
       if (this.state.hasMedicare === true) {
         return ( <MedicarePrimaryQuestion handleMedicarePrim={this.handleMedicarePrim.bind(this)} /> )
-      }
-      else {
+      } else {
         return ( <OtherSecondaryInsurance handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
       }
     }
@@ -207,8 +206,7 @@ class Medicare extends React.Component {
                             reviewing={this.props.reviewing}
                             saveValues={this.props.saveValues}
                             stepIndex={this.props.stepIndex} /> )
-      }
-      else {
+      } else {
         // when they don't have medicare or any other health insurance
         return ( <Insurance primary={false} secondary={false} /> )
       }

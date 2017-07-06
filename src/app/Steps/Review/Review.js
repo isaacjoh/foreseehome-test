@@ -54,14 +54,6 @@ const Review = React.createClass({
     });
   },
 
-  submitForm(data) {
-    alert(JSON.stringify(data, null, 4));
-  },
-
-  notifyFormError(data) {
-    console.error('Form error:', data);
-  },
-
   componentDidMount() {
     window.scrollTo(0, 0);
   },
@@ -118,13 +110,14 @@ const Review = React.createClass({
                         handleEdit={this.props.handleEdit}
                         handleNext={this.props.handleNext} />
 
-          <div className="spacer-small"></div>
+          <div className="spacer-medium"></div>
 
           <StepButtons data={data}
                        handleNext={this.props.handleNext}
                        handlePrev={this.props.handlePrev}
                        saveValues={this.props.saveValues}
-                       stepIndex={this.props.stepIndex} />
+                       stepIndex={this.props.stepIndex}
+                       validated={true} />
         </Paper>
       </MuiThemeProvider>
     );
