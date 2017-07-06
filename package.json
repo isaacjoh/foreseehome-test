@@ -1,0 +1,42 @@
+{
+  "name": "foreseehome-application",
+  "version": "0.15.0",
+  "description": "Sample project for ForeseeHome",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/callemall/material-ui-browserify-gulp-example.git"
+  },
+  "scripts": {
+    "start": "gulp"
+  },
+  "private": true,
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.18.6",
+    "browserify": "^14.0.0",
+    "gulp": "^3.9.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-util": "^3.0.8",
+    "pretty-hrtime": "^1.0.3",
+    "require-dir": "^0.3.1",
+    "underscore": "^1.8.3",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.9.0"
+  },
+  "dependencies": {
+    "create-react-class": "^15.6.0",
+    "formsy-material-ui": "^0.6.0",
+    "formsy-react": "^0.19.0",
+    "material-ui": "^0.17.0",
+    "mui-editable-table": "^0.3.2",
+    "react": "15.4.2",
+    "react-dom": "15.4.2",
+    "react-dropzone": "^3.13.3",
+    "react-tap-event-plugin": "^2.0.1",
+    "react-webcam": "^0.2.0"
+  }
+}
