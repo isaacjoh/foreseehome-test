@@ -62,10 +62,8 @@ class Main extends React.Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    window.onbeforeunload = () => {
-      return false;
-    };
   }
+
   shouldOpenForm(){
     this.setState({
       goToForm: !this.state.goToForm

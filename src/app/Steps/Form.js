@@ -71,6 +71,12 @@ class HorizontalLinearStepper extends React.Component {
     };
   }
 
+  componentDidMount() {
+    window.onbeforeunload = () => {
+      return false;
+    };
+  }
+
   componentWillMount() {
     const {stepIndex} = this.state;
     window.addEventListener('resize', this.handleWindowSizeChange);
