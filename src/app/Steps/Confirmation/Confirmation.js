@@ -41,10 +41,15 @@ const Confirmation = React.createClass({
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
-          <h2>Congratulations!</h2>
+          <h2>Thank You!</h2>
 
-          <h4>We have your information and will process your order shortly.</h4>
-          <h4>In the meantime, we encourage you to continue to learn more about AMD.</h4>
+          <div className="confirmation-text">
+            <p>Congratulations on <i>taking your first step toward preserving vision</i>! We have received your ForeseeHome enrollment.</p>
+            <p>A Notal Vision Enrollment Specialist will be contacting you within 24-48 hours. If you need immediate assistance, please call Customer Service at 1-888-910-2020.</p>
+            <p>In the meantime, we encourage you to continue to learn more about AMD and ForeseeHome.</p>
+          </div>
+
+          <iframe src="https://player.vimeo.com/video/77988968" frameBorder="0"></iframe>
 
           <h5>Output Data</h5>
           <pre>{JSON.stringify(this.props.fieldValues, null, 2)}</pre>
@@ -60,8 +65,7 @@ const Confirmation = React.createClass({
               />
               <FlatButton
                 label="Home"
-                href="http://foreseehome.com/patients.html"
-                target="_blank"
+                onTouchTap={() => window.location.reload()}
               />
             </div>
           </div>
