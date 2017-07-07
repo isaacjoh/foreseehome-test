@@ -205,6 +205,22 @@ iframe {
   text-align: center;
 }
 
+.ReactModal__Content {
+  bottom: 0;
+  height: 200px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 10%;
+  width: 400px;
+}
+
+.modal-btns {
+  margin-top: 35px;
+  text-align: center;
+}
+
 
 /* for mobile */
 @media only screen and (max-width: 767px) {

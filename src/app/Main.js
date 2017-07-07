@@ -12,6 +12,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {FormsyText} from 'formsy-material-ui/lib';
 
+import ReactModal from 'react-modal';
+
 // import HorizontalLinearStepper
 import HorizontalLinearStepper from './Steps/Form.js';
 
@@ -22,6 +24,9 @@ const styles = {
   container: {
     textAlign: 'center',
     paddingTop: 200,
+  },
+  backButton: {
+    marginRight: 12,
   },
 };
 
@@ -50,14 +55,17 @@ class Main extends React.Component {
       open: false,
       goToForm: false,
       hasRxId: false,
-      rxId: null
+      rxId: null,
+      showModal: false
     };
   }
 
   componentDidMount() {
     window.scrollTo(0, 0);
+    window.onbeforeunload = () => {
+      return false;
+    };
   }
-
   shouldOpenForm(){
     this.setState({
       goToForm: !this.state.goToForm
@@ -70,6 +78,18 @@ class Main extends React.Component {
         hasRxId: true
       })
     }
+  }
+
+  handleOpenModal () {
+    this.setState({
+      showModal: true
+    });
+  }
+
+  handleCloseModal () {
+    this.setState({
+      showModal: false
+    });
   }
 
   handleRequestClose() {
@@ -91,31 +111,28 @@ class Main extends React.Component {
       <div>
         { goToForm ? (
           <MuiThemeProvider muiTheme={muiTheme}>
-
-              <HorizontalLinearStepper />
-
+            <HorizontalLinearStepper />
           </MuiThemeProvider>
           ) : (
             <MuiThemeProvider muiTheme={muiTheme}>
-            <Card className="foresee-form">
-              <h2> Welcome to ForeseeHome!</h2>
-              <p>Thank you for taking the next step in AMD prevention. Let's complete your enrollment so that  you can begin monitoring as soon as possible.</p>
+              <Card className="foresee-form">
+                <h2> Welcome to ForeseeHome!</h2>
+                <p>Thank you for taking the next step in AMD prevention. Let's complete your enrollment so that  you can begin monitoring as soon as possible.</p>
 
-              <p>What is your Rx Number?</p>
-              <TextField floatingLabelText="Rx Number"
-                         floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}} />
-              <IconButton className="physician-popover" tooltip="Image reference physician order form popover">
-              <FontIcon className="material-icons">help</FontIcon>
-              </IconButton>
+                <p>What is your Rx Number?</p>
+                <TextField floatingLabelText="Rx Number"
+                          floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}} />
+                <IconButton className="physician-popover" tooltip="Image reference physician order form popover">
+                <FontIcon className="material-icons">help</FontIcon>
+                </IconButton>
 
-              <div className="submit-btn-div">
-                <RaisedButton label="Let's get started" primary={true} onClick={() => this.shouldOpenForm() } />
-              </div>
-            </Card>
-          </MuiThemeProvider>
+                <div className="submit-btn-div">
+                  <RaisedButton label="Let's get started" primary={true} onClick={() => this.shouldOpenForm() } />
+                </div>
+              </Card>
+            </MuiThemeProvider>
       )}
      </div>
-
     );
   }
 }
