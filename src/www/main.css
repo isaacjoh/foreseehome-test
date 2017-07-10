@@ -162,6 +162,10 @@ iframe {
   display: block;
 }
 
+.review-table table {
+  table-layout: auto !important;
+}
+
 .review-table tr td {
   font-family: 'acherus_grotesque_medium' !important;
   font-size: 15px !important;
@@ -175,10 +179,16 @@ iframe {
 
 .review-table tr td:nth-child(2) {
   font-family: 'acherus_grotesque_extrabold' !important;
+  width: 30% !important;
+}
+
+.review-table tr td:nth-child(3) {
+  width: 55% !important;
 }
 
 .review-table tr td:last-child {
   text-align: right !important;
+  width: 15% !important;
 }
 
 .spacer {

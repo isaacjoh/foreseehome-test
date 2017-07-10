@@ -48,9 +48,6 @@ class Main extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    // this.handleRequestClose = this.handleRequestClose.bind(this);
-    // this.handleTouchTap = this.handleTouchTap.bind(this);
-
     this.state = {
       open: false,
       goToForm: false,

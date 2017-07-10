@@ -126,10 +126,12 @@ const Contact = React.createClass({
               <div>
                 <FormsyText name="address"
                             value={this.props.fieldValues.address}
-                            required
                             floatingLabelText="Street Address *"
+                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintText="123 Main St, Apt D8"
                             ref={(address) => {this._address = address}}
-                            style={inputStyle} />
+                            style={inputStyle}
+                            required />
               </div>
               <div>
                 <FormsyText name="city"
@@ -137,31 +139,35 @@ const Contact = React.createClass({
                             floatingLabelText="City *"
                             validations={{matchRegexp: /^([A-Za-z\- ]+)$/}}
                             validationError={wordError}
-                            required
+                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintText="Richmond"
                             ref={(city) => {this._city = city}}
-                            style={inputStyle} />
+                            style={inputStyle}
+                            required />
               </div>
               <div>
                 <FormsyText name="state"
                             value={this.props.fieldValues.state}
+                            floatingLabelText="State *"
                             validations="isValidState"
                             validationError={stateError}
-                            required
-                            floatingLabelText="State *"
                             hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
-                            hintText="NY"
+                            hintText="VA"
                             ref={(state) => {this._state = state}}
-                            style={inputStyle} />
+                            style={inputStyle}
+                            required />
               </div>
               <div>
                 <FormsyText name="zip"
                             value={this.props.fieldValues.zip}
+                            floatingLabelText="ZIP Code *"
                             validations={{matchRegexp: /^\d{5}(?:[-\s]\d{4})?$/}}
                             validationError={zipError}
-                            required
-                            floatingLabelText="ZIP Code *"
+                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintText="12345"
                             ref={(zip) => {this._zip = zip}}
-                            style={inputStyle} />
+                            style={inputStyle}
+                            required />
               </div>
 
               <h3 style={contactSectionStyle}>Your Contact Information</h3>
@@ -182,9 +188,11 @@ const Contact = React.createClass({
               <div>
                 <FormsyText name="email"
                             value={this.props.fieldValues.email}
+                            floatingLabelText="Email"
                             validations="isEmail"
                             validationError={emailError}
-                            floatingLabelText="Email"
+                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintText="john@gmail.com"
                             ref={(email) => {this._email = email}}
                             style={inputStyle} />
               </div>
