@@ -51,9 +51,6 @@ const Confirmation = React.createClass({
 
           <iframe src="https://player.vimeo.com/video/77988968" frameBorder="0"></iframe>
 
-          <h5>Output Data</h5>
-          <pre>{JSON.stringify(this.props.fieldValues, null, 2)}</pre>
-
           <div className="step-buttons text-center">
             <div style={actions}>
               <RaisedButton
