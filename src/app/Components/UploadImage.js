@@ -105,19 +105,20 @@ class UploadImage extends React.Component {
     if (isMobile) {
       return (
         <div className="webcam-container" key={this.id}>
-          <div className={`webcam-component ${hide}`}>
+          {/* <div className={`webcam-component ${hide}`}>
             <Webcam audio={false}
                     onUserMedia={() => this.onCapture}
                     ref={this.setRef}
                     screenshotFormat="image/jpeg" />
-          </div>
+          </div> */}
 
           <input type="file"
-                 capture="camera"
                  accept="image/*"
                  id="cameraInput"
+                 capture="camera"
                  name="cameraInput"
-                 onChange={(e) => this._handleImageChange(e)} /> />
+                 onChange={(e) => this._handleImageChange(e)} />
+
           <div className={this.state.file ? 'img-preview text-center' : ''}>
             {$imagePreview}
           </div>
