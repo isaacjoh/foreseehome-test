@@ -112,12 +112,10 @@ class UploadImage extends React.Component {
                     screenshotFormat="image/jpeg" />
           </div> */}
 
-          <input type="file"
-                 accept="image/*"
-                 id="cameraInput"
-                 capture="camera"
-                 name="cameraInput"
-                 onChange={(e) => this._handleImageChange(e)} />
+          <label htmlFor={this.id} className="custom-file-upload">
+            Choose File
+          </label>
+          <input type="file" accept="image/*" id={this.id} capture="camera" onChange={(e) => this._handleImageChange(e)} />
 
           <div className={this.state.file ? 'img-preview text-center' : ''}>
             {$imagePreview}
