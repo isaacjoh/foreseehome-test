@@ -78,23 +78,23 @@ class UploadImage extends React.Component {
 
     let hide = this.state.reset ? '' : 'hide';
 
-    if (!isMobile) {
-      let {imagePreviewUrl} = this.state;
-      let $imagePreview = null;
-      if (imagePreviewUrl) {
-        $imagePreview = (<img src={imagePreviewUrl} />);
-      } else {
-        $imagePreview = (<div className="preview-text"></div>);
-      }
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<img src={imagePreviewUrl} />);
+    } else {
+      $imagePreview = (<div className="preview-text"></div>);
+    }
 
+    if (!isMobile) {
       return (
         <div className="preview-component">
           <label htmlFor={this.id} className="custom-file-upload">
             Choose File
           </label>
           <input id={this.id}
-                type="file"
-                onChange={(e) => this._handleImageChange(e)} />
+                 type="file"
+                 onChange={(e) => this._handleImageChange(e)} />
           <div className={this.state.file ? 'img-preview text-center' : ''}>
             {$imagePreview}
           </div>
@@ -110,6 +110,16 @@ class UploadImage extends React.Component {
                     onUserMedia={() => this.onCapture}
                     ref={this.setRef}
                     screenshotFormat="image/jpeg" />
+          </div>
+
+          <input type="file"
+                 capture="camera"
+                 accept="image/*"
+                 id="cameraInput"
+                 name="cameraInput"
+                 onChange={(e) => this._handleImageChange(e)} /> />
+          <div className={this.state.file ? 'img-preview text-center' : ''}>
+            {$imagePreview}
           </div>
 
           {!this.state.reset && (
