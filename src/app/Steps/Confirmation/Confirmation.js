@@ -9,14 +9,10 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import MenuItem from 'material-ui/MenuItem';
 
-const Confirmation = React.createClass({
-
-  styles: {
+const getStyles = () => {
+  const stylesObj = {
     actions: {
       marginTop: 12,
-    },
-    backButton: {
-      marginRight: 12,
     },
     paperStyle: {
       width: 'auto',
@@ -29,8 +25,25 @@ const Confirmation = React.createClass({
     submitStyle: {
       marginTop: 32,
     },
-  },
+  };
 
+  const isMobile = window.innerWidth <= 767;
+
+  if (isMobile) {
+    stylesObj.backButton = {
+      marginBottom: 15
+    }
+  }
+  else {
+    stylesObj.backButton = {
+      marginRight: 12
+    }
+  }
+
+  return stylesObj;
+};
+
+const Confirmation = React.createClass({
   componentDidMount() {
     window.scrollTo(0, 0);
     window.onbeforeunload = () => {
@@ -39,11 +52,11 @@ const Confirmation = React.createClass({
   },
 
   render() {
-    let {paperStyle, switchStyle, submitStyle, actions, backButton } = this.styles;
+    const styles = getStyles();
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <Paper style={paperStyle}>
+        <Paper style={styles.paperStyle}>
           <h2>Thank You!</h2>
 
           <div className="confirmation-text">
@@ -55,11 +68,11 @@ const Confirmation = React.createClass({
           <iframe src="https://player.vimeo.com/video/77988968" frameBorder="0"></iframe>
 
           <div className="step-buttons text-center">
-            <div style={actions}>
+            <div style={styles.actions}>
               <RaisedButton
                 label="Let's learn more!"
                 primary={true}
-                style={backButton}
+                style={styles.backButton}
                 href="http://foreseehome.com/amd-resources.html"
                 target="_blank"
               />
