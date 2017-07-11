@@ -59,7 +59,8 @@ class UploadImage extends React.Component {
   onReset = () => {
     this.setState({
       reset: true,
-      mobileImagePreviewUrl: null
+      mobileImagePreviewUrl: null,
+      imagePreviewUrl: null
     });
     this.props.getScreenshotSrc(null);
 
@@ -75,7 +76,7 @@ class UploadImage extends React.Component {
 
   render() {
     const isMobile = window.innerWidth <= 1025;
-
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     let hide = this.state.reset ? '' : 'hide';
 
     let {imagePreviewUrl} = this.state;
@@ -102,20 +103,30 @@ class UploadImage extends React.Component {
       )
     }
 
-    if (isMobile) {
+    if (isMobile && iOS) {
       return (
         <div className="webcam-container" key={this.id}>
-          {/* <div className={`webcam-component ${hide}`}>
+          <label htmlFor={this.id} className="custom-file-upload">
+            Take picture
+          </label>
+          <input type="file" accept="image/*" id={this.id} capture="camera" onChange={(e) => this._handleImageChange(e)} />
+
+          <div className={this.state.file ? 'img-preview text-center' : ''}>
+            {$imagePreview}
+          </div>
+        </div>
+      )
+    }
+
+    if (isMobile && !iOS) {
+      return (
+        <div className="webcam-container" key={this.id}>
+          <div className={`webcam-component ${hide}`}>
             <Webcam audio={false}
                     onUserMedia={() => this.onCapture}
                     ref={this.setRef}
                     screenshotFormat="image/jpeg" />
-          </div> */}
-
-          <label htmlFor={this.id} className="custom-file-upload">
-            Choose File
-          </label>
-          <input type="file" accept="image/*" id={this.id} capture="camera" onChange={(e) => this._handleImageChange(e)} />
+          </div>
 
           <div className={this.state.file ? 'img-preview text-center' : ''}>
             {$imagePreview}
