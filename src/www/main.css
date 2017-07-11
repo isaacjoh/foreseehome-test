@@ -251,6 +251,10 @@ iframe {
     right: -25px;
   }
 
+  .review-table div {
+    overflow-x: auto !important;
+  }
+
   h1 {
     font-size: 26px;
   }
