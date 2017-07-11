@@ -293,6 +293,8 @@ iframe {
   }
 
   .webcam-container button {
+    background: none;
+    border: none;
     float: right;
   }
 
