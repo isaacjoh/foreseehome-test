@@ -66,7 +66,7 @@ class Insurance extends React.Component {
         this.setState({uploadComplete: true});
       }
       else {
-        his.setState({uploadComplete: false});
+        this.setState({uploadComplete: false});
       }
     }
   }
