@@ -63,6 +63,10 @@ const Contact = React.createClass({
     contactSectionStyle: {
       marginBottom: 0,
       marginTop: 42
+    },
+    helperText: {
+      color: '#373D3F',
+      fontFamily: 'acherus_grotesque_regular'
     }
   },
 
@@ -95,7 +99,7 @@ const Contact = React.createClass({
   },
 
   render() {
-    let { paperStyle, inputStyle, contactSectionStyle, shippingSectionStyle, shippingSubsectionStyle } = this.styles;
+    let { paperStyle, inputStyle, contactSectionStyle, shippingSectionStyle, shippingSubsectionStyle, helperText } = this.styles;
     let { wordError, zipError, stateError, emailError, phoneError } = this.errorMessages;
 
     let data = {};
@@ -127,7 +131,7 @@ const Contact = React.createClass({
                 <FormsyText name="address"
                             value={this.props.fieldValues.address}
                             floatingLabelText="Street Address *"
-                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintStyle={helperText}
                             hintText="123 Main St, Apt D8"
                             ref={(address) => {this._address = address}}
                             style={inputStyle}
@@ -139,10 +143,11 @@ const Contact = React.createClass({
                             floatingLabelText="City *"
                             validations={{matchRegexp: /^([A-Za-z\- ]+)$/}}
                             validationError={wordError}
-                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintStyle={helperText}
                             hintText="Richmond"
                             ref={(city) => {this._city = city}}
                             style={inputStyle}
+                            updateImmediately
                             required />
               </div>
               <div>
@@ -151,10 +156,11 @@ const Contact = React.createClass({
                             floatingLabelText="State *"
                             validations="isValidState"
                             validationError={stateError}
-                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintStyle={helperText}
                             hintText="VA"
                             ref={(state) => {this._state = state}}
                             style={inputStyle}
+                            updateImmediately
                             required />
               </div>
               <div>
@@ -163,10 +169,11 @@ const Contact = React.createClass({
                             floatingLabelText="ZIP Code *"
                             validations={{matchRegexp: /^\d{5}(?:[-\s]\d{4})?$/}}
                             validationError={zipError}
-                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintStyle={helperText}
                             hintText="12345"
                             ref={(zip) => {this._zip = zip}}
                             style={inputStyle}
+                            updateImmediately
                             required />
               </div>
 
@@ -180,10 +187,12 @@ const Contact = React.createClass({
                             floatingLabelText="Phone Number"
                             validations={{matchRegexp: /^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$/}}
                             validationError={phoneError}
-                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintStyle={helperText}
                             hintText="(555) 555-5555"
                             ref={(phone) => {this._phone = phone}}
-                            style={inputStyle} />
+                            style={inputStyle}
+                            updateImmediately
+                            required />
               </div>
               <div>
                 <FormsyText name="email"
@@ -191,10 +200,11 @@ const Contact = React.createClass({
                             floatingLabelText="Email"
                             validations="isEmail"
                             validationError={emailError}
-                            hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                            hintStyle={helperText}
                             hintText="john@gmail.com"
                             ref={(email) => {this._email = email}}
-                            style={inputStyle} />
+                            style={inputStyle}
+                            updateImmediately />
               </div>
             </div>
 

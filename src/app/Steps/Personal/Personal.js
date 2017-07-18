@@ -12,6 +12,12 @@ import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
 
 import StepButtons from '../../Components/StepButtons';
 
+Formsy.addValidationRule('hasGender', (values, value) => {
+  if (value) {
+    return true;
+  }
+});
+
 const Personal = React.createClass({
 
   getInitialState() {
@@ -40,6 +46,10 @@ const Personal = React.createClass({
     },
     inputStyle: {
       width: '100%'
+    },
+    helperText: {
+      color: '#373D3F',
+      fontFamily: 'acherus_grotesque_regular'
     }
   },
 
@@ -68,7 +78,7 @@ const Personal = React.createClass({
   },
 
   render() {
-    let {paperStyle, switchStyle, submitStyle, inputStyle } = this.styles;
+    let {paperStyle, switchStyle, submitStyle, inputStyle, helperText } = this.styles;
     let { wordsError, numericError, dobError } = this.errorMessages;
 
     let data = {};
@@ -93,14 +103,13 @@ const Personal = React.createClass({
                 value={this.props.fieldValues.name}
                 validations={{matchRegexp: /^([A-Za-z\-\. ]+)$/}}
                 validationError={wordsError}
-                required
-                hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                hintStyle={helperText}
                 hintText="John Doe"
                 floatingLabelText="Name *"
                 ref={(name) => {this._fullName = name}}
                 style={inputStyle}
                 updateImmediately
-              />
+                required />
             </div>
 
             <div>
@@ -109,22 +118,25 @@ const Personal = React.createClass({
                 value={this.props.fieldValues.dob}
                 validations={{matchRegexp: /^([1-9]|1[012])\/([1-9]|[12][0-9]|3[01])\/(19|20)\d\d$/}}
                 validationError={dobError}
-                hintStyle={{fontFamily: 'acherus_grotesque_regular'}}
+                hintStyle={helperText}
                 hintText="MM/DD/YYYY"
                 floatingLabelText="Date of Birth"
                 ref={(dob) => {this._dob = dob}}
                 style={inputStyle}
-              />
+                updateImmediately
+                required />
             </div>
 
             <div className="form-element">
               <FormsyRadioGroup name="gender"
                                 defaultSelected={this.props.fieldValues.gender}
-                                ref={(gender) => {this._gender = gender}}>
+                                ref={(gender) => {this._gender = gender}}
+                                validations="hasGender">
                 <FormsyRadio
                   value="Male"
                   label="Male"
                   style={switchStyle}
+                  required
                 />
                 <FormsyRadio
                   value="Female"
