@@ -120,7 +120,7 @@ const Personal = React.createClass({
                 validationError={dobError}
                 hintStyle={helperText}
                 hintText="MM/DD/YYYY"
-                floatingLabelText="Date of Birth"
+                floatingLabelText="Date of Birth *"
                 ref={(dob) => {this._dob = dob}}
                 style={inputStyle}
                 updateImmediately

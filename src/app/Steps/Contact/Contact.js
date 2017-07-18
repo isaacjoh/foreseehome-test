@@ -184,7 +184,7 @@ const Contact = React.createClass({
               <div>
                 <FormsyText name="phone"
                             value={this.props.fieldValues.phone}
-                            floatingLabelText="Phone Number"
+                            floatingLabelText="Phone Number *"
                             validations={{matchRegexp: /^\(?[\d]{3}\)?[\s-]?[\d]{3}[\s-]?[\d]{4}$/}}
                             validationError={phoneError}
                             hintStyle={helperText}
