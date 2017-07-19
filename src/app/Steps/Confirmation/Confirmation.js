@@ -32,9 +32,14 @@ const getStyles = () => {
   if (isMobile) {
     stylesObj.backButton = {
       marginBottom: 15
+    };
+
+    stylesObj.paperStyle = {
+      width: 'auto',
+      margin: 'auto',
+      padding: 25
     }
-  }
-  else {
+  } else {
     stylesObj.backButton = {
       marginRight: 12
     }

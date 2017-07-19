@@ -10,11 +10,18 @@ import FlatButton from 'material-ui/FlatButton';
 
 import StepButtons from '../../Components/StepButtons';
 
+let paddingValue = 40;
+const isMobile = window.innerWidth <= 767;
+
+if (isMobile) {
+  paddingValue = 25;
+}
+
 const styles = {
   paperStyle: {
     width: 'auto',
     margin: 'auto',
-    padding: 40,
+    padding: paddingValue,
   },
   switchStyle: {
     marginBottom: 16,

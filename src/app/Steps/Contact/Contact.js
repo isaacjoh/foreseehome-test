@@ -27,6 +27,13 @@ Formsy.addValidationRule('isValidState', (values, value) => {
   }
 });
 
+let paddingValue = 40;
+const isMobile = window.innerWidth <= 767;
+
+if (isMobile) {
+  paddingValue = 25;
+}
+
 const Contact = React.createClass({
 
   getInitialState() {
@@ -48,7 +55,7 @@ const Contact = React.createClass({
     paperStyle: {
       width: 'auto',
       margin: 'auto',
-      padding: 40,
+      padding: paddingValue,
     },
     inputStyle: {
       width: '100%'

@@ -18,6 +18,13 @@ Formsy.addValidationRule('hasGender', (values, value) => {
   }
 });
 
+let paddingValue = 40;
+const isMobile = window.innerWidth <= 767;
+
+if (isMobile) {
+  paddingValue = 25;
+}
+
 const Personal = React.createClass({
 
   getInitialState() {
@@ -32,11 +39,12 @@ const Personal = React.createClass({
     dobError: "Please check the date format",
   },
 
+
   styles: {
     paperStyle: {
       width: 'auto',
       margin: 'auto',
-      padding: 40,
+      padding: paddingValue,
     },
     switchStyle: {
       marginBottom: 16,
@@ -116,7 +124,7 @@ const Personal = React.createClass({
               <FormsyText
                 name="date of birth"
                 value={this.props.fieldValues.dob}
-                validations={{matchRegexp: /^([1-9]|1[012])\/([1-9]|[12][0-9]|3[01])\/(19|20)\d\d$/}}
+                validations={{matchRegexp: /^(0[1-9]|[1-9]|1[012])\/(0[1-9]|[1-9]|[12][0-9]|3[01])\/(19|20)\d\d$/}}
                 validationError={dobError}
                 hintStyle={helperText}
                 hintText="MM/DD/YYYY"
