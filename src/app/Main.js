@@ -20,6 +20,41 @@ import HorizontalLinearStepper from './Steps/Form.js';
 //form wrapper
 import Formsy from 'formsy-react';
 
+const isMobile = window.innerWidth <= 767;
+let rxDiv = {};
+let rxImg = {
+  bottom: '10%',
+  height: 150,
+  position: 'absolute',
+  right: '12%',
+  width: 300
+};
+
+if (isMobile) {
+  rxDiv = {
+    background: 'rgba(0, 0, 0, 0.4)',
+    height: '100%',
+    left: 0,
+    margin: 'auto',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: '100%',
+    zIndex: 2
+  };
+
+  rxImg = {
+    bottom: 0,
+    height: 150,
+    left: 0,
+    margin: 'auto',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: 300
+  }
+}
+
 const styles = {
   container: {
     textAlign: 'center',
@@ -27,22 +62,17 @@ const styles = {
   },
   backButton: {
     marginRight: 12,
-  },
+  }
 };
+
+styles.rxDiv = rxDiv;
+styles.rxImg = rxImg;
 
 const muiTheme = getMuiTheme({
   palette: {
     accent1Color: deepOrange500,
   },
 });
-
-const style = {
-  height: 100,
-  width: 100,
-  margin: 20,
-  textAlign: 'center',
-  display: 'inline-block',
-};
 
 class Main extends React.Component {
   constructor(props, context) {
@@ -53,6 +83,7 @@ class Main extends React.Component {
       goToForm: false,
       hasRxId: false,
       rxId: null,
+      showRx: false,
       showModal: false
     };
   }
@@ -64,6 +95,18 @@ class Main extends React.Component {
   shouldOpenForm(){
     this.setState({
       goToForm: !this.state.goToForm
+    });
+  }
+
+  toggleShowRx(){
+    this.setState({
+      showRx: !this.state.showRx
+    });
+  }
+
+  hideRx(){
+    this.setState({
+      showRx: false
     });
   }
 
@@ -100,7 +143,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const {goToForm} = this.state;
+    const { goToForm, showRx } = this.state;
     return (
 
       <div>
@@ -116,10 +159,16 @@ class Main extends React.Component {
 
                 <p>What is your Rx Number?</p>
                 <TextField floatingLabelText="Rx Number"
-                          floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}} />
-                <IconButton className="physician-popover" tooltip="Image reference physician order form popover">
-                <FontIcon className="material-icons">help</FontIcon>
+                           floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}} />
+                <IconButton className="physician-popover" id="rx" onClick={() => this.toggleShowRx()}>
+                  <FontIcon className="material-icons">help</FontIcon>
                 </IconButton>
+
+                {showRx ? (
+                  <div style={styles.rxDiv} onClick={() => this.hideRx()}>
+                    <img style={styles.rxImg} src="../www/static/img/rx_number.png" alt="" />
+                  </div>
+                ) : ''}
 
                 <div className="submit-btn-div">
                   <RaisedButton label="Let's get started" primary={true} onClick={() => this.shouldOpenForm() } />

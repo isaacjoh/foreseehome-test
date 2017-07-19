@@ -39,7 +39,6 @@ const Personal = React.createClass({
     dobError: "Please check the date format",
   },
 
-
   styles: {
     paperStyle: {
       width: 'auto',
