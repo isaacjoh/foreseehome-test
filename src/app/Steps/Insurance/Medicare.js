@@ -34,24 +34,6 @@ const styles = {
   }
 }
 
-const MedicareQuestion = function(props){
-  return (
-    <div>
-      <h3>Do you have Medicare?</h3>
-      <div>
-        <RaisedButton label="Yes"
-                      secondary={true}
-                      style={styles.leftButton}
-                      onTouchTap={() => props.handleMedicare(true)} />
-        <RaisedButton label="No"
-                      secondary={true}
-                      onTouchTap={() => props.handleMedicare(false)} />
-      </div>
-      <div className="spacer"></div>
-    </div>
-  )
-}
-
 const OtherInsurance = function(props){
   return (
     <div>
@@ -106,12 +88,24 @@ const MedicarePrimaryQuestion = function(props){
   )
 }
 
+const NoInsurance = function(props){
+  return (
+    <div>
+      <p>
+        Even though you have no insurance, we may be able to help.
+      </p>
+      <p>
+        Please call 800-XXX-XXXX to discuss your options.
+      </p>
+    </div>
+  )
+}
+
 class Medicare extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      hasMedicare: null,
       hasOtherIns: null,
       hasOtherSecIns: null,
       isMedicarePrim: null
@@ -181,56 +175,23 @@ class Medicare extends React.Component {
                           stepIndex={this.props.stepIndex} /> )
     }
 
-    if(this.state.isMedicarePrim === true || this.state.isMedicarePrim === false ) {
-      return ( <Insurance primary={true}
-                          secondary={true}
-                          getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
-                          getSecondaryScreenshotSrc={this.props.getSecondaryScreenshotSrc}
-                          handleEdit={this.props.handleEdit}
-                          handleNext={this.props.handleNext}
-                          handlePrev={this.props.handlePrev}
-                          reviewing={this.props.reviewing}
-                          saveValues={this.props.saveValues}
-                          stepIndex={this.props.stepIndex} /> )
-    }
-
     if(this.state.hasOtherIns === true) {
-      if (this.state.hasMedicare === true) {
-        return ( <MedicarePrimaryQuestion handleMedicarePrim={this.handleMedicarePrim.bind(this)} /> )
-      } else {
-        return ( <OtherSecondaryInsurance handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
-      }
-    }
-
-    if(this.state.hasOtherIns === false) {
-      if (this.state.hasMedicare === true) {
-        return ( <Insurance primary={true}
-                            secondary={false}
-                            getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
-                            handleEdit={this.props.handleEdit}
-                            handleNext={this.props.handleNext}
-                            handlePrev={this.props.handlePrev}
-                            reviewing={this.props.reviewing}
-                            saveValues={this.props.saveValues}
-                            stepIndex={this.props.stepIndex} /> )
-      } else {
-        // when they don't have medicare or any other health insurance
-        return ( <Insurance primary={false} secondary={false} /> )
-      }
-    }
-
-    if(this.state.hasMedicare === null) {
-      return ( <MedicareQuestion handleMedicare={this.handleMedicare.bind(this)}/> )
-    }
-
-    if(this.state.hasMedicare === true) {
-      return ( <OtherInsurance handleOtherIns={this.handleOtherIns.bind(this)} /> )
-    }
-
-    if(this.state.hasMedicare === false) {
       return ( <OtherSecondaryInsurance handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
     }
 
+    if(this.state.hasOtherIns === false) {
+      return ( <NoInsurance /> )
+    }
+
+    if(this.state.isMedicarePrim === null) {
+      return ( <MedicarePrimaryQuestion handleMedicarePrim={this.handleMedicarePrim.bind(this)} /> )
+    }
+
+    if(this.state.isMedicarePrim === true) {
+      return ( <OtherSecondaryInsurance handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
+    } else {
+      return ( <OtherInsurance handleOtherIns={this.handleOtherIns.bind(this)} /> )
+    }
   }
 
   render() {
