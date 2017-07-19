@@ -14,6 +14,13 @@ import StepButtons from '../../Components/StepButtons';
 import ReviewTables from '../../Components/ReviewTables';
 import ReviewImages from '../../Components/ReviewImages';
 
+let paddingValue = 40;
+const isMobile = window.innerWidth <= 767;
+
+if (isMobile) {
+  paddingValue = 25;
+}
+
 const Review = React.createClass({
 
   getInitialState() {
@@ -32,7 +39,7 @@ const Review = React.createClass({
     paperStyle: {
       width: 'auto',
       margin: 'auto',
-      padding: 40,
+      padding: paddingValue,
     },
     switchStyle: {
       marginBottom: 16,

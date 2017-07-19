@@ -258,7 +258,9 @@ input[name='state'] {
   }
 
   .review-img button {
-    right: -25px;
+    position: relative !important;
+    text-align: right !important;
+    width: 100%;
   }
 
   .review-table div {
@@ -294,6 +296,10 @@ input[name='state'] {
 @media only screen and (max-width: 1024px) {
   .retake-btn {
     margin-top: 10px;
+  }
+
+  .review-img button {
+    right: -25px;
   }
 
   .webcam-container {
