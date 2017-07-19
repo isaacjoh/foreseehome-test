@@ -131,7 +131,6 @@ const Personal = React.createClass({
                 floatingLabelText="Date of Birth *"
                 ref={(dob) => {this._dob = dob}}
                 style={inputStyle}
-                updateImmediately
                 required />
             </div>
 

@@ -167,7 +167,6 @@ const Contact = React.createClass({
                             hintText="VA"
                             ref={(state) => {this._state = state}}
                             style={inputStyle}
-                            updateImmediately
                             required />
               </div>
               <div>
@@ -180,7 +179,6 @@ const Contact = React.createClass({
                             hintText="12345"
                             ref={(zip) => {this._zip = zip}}
                             style={inputStyle}
-                            updateImmediately
                             required />
               </div>
 
@@ -198,7 +196,6 @@ const Contact = React.createClass({
                             hintText="(555) 555-5555"
                             ref={(phone) => {this._phone = phone}}
                             style={inputStyle}
-                            updateImmediately
                             required />
               </div>
               <div>
@@ -210,8 +207,7 @@ const Contact = React.createClass({
                             hintStyle={helperText}
                             hintText="john@gmail.com"
                             ref={(email) => {this._email = email}}
-                            style={inputStyle}
-                            updateImmediately />
+                            style={inputStyle} />
               </div>
             </div>
 
