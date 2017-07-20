@@ -48,6 +48,10 @@ const OtherInsurance = function(props){
                       onTouchTap={() => props.handleOtherIns(false)} />
       </div>
       <div className="spacer"></div>
+      <StepButtons data={{}}
+                   insuring={true}
+                   handleEdit={props.handleEdit}
+                   saveValues={() => {}} />
     </div>
   )
 }
@@ -66,6 +70,10 @@ const OtherSecondaryInsurance = function(props){
                       onTouchTap={() => props.handleOtherSecIns(false)} />
       </div>
       <div className="spacer"></div>
+      <StepButtons data={{}}
+                   insuring={true}
+                   handleEdit={props.handleEdit}
+                   saveValues={() => {}} />
     </div>
   )
 }
@@ -84,6 +92,9 @@ const MedicarePrimaryQuestion = function(props){
                         onTouchTap={() => props.handleMedicarePrim(false)} />
       </div>
       <div className="spacer"></div>
+      <StepButtons data={{}}
+                   handlePrev={props.handlePrev}
+                   saveValues={() => {}} />
     </div>
   )
 }
@@ -97,6 +108,19 @@ const NoInsurance = function(props){
       <p>
         Please call 800-XXX-XXXX to discuss your options.
       </p>
+      <div className="spacer"></div>
+      <div>
+        <FlatButton
+          label="Back"
+          onTouchTap={() => props.handleEdit(3)}
+          style={styles.leftButton}
+        />
+        <RaisedButton
+          label="Home"
+          primary={true}
+          onTouchTap={() => window.location.reload()}
+        />
+      </div>
     </div>
   )
 }
@@ -149,13 +173,23 @@ class Medicare extends React.Component {
     }
   }
 
+  handleEdit(step){
+    this.setState({
+      hasOtherIns: null,
+      hasOtherSecIns: null,
+      isMedicarePrim: null
+    });
+
+    this.props.handleEdit(step);
+  }
+
   getInsuranceSubStep(){
     if (this.state.hasOtherSecIns === true) {
       return ( <Insurance primary={true}
                           secondary={true}
                           getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
                           getSecondaryScreenshotSrc={this.props.getSecondaryScreenshotSrc}
-                          handleEdit={this.props.handleEdit}
+                          handleEdit={this.handleEdit.bind(this)}
                           handleNext={this.props.handleNext}
                           handlePrev={this.props.handlePrev}
                           reviewing={this.props.reviewing}
@@ -167,7 +201,7 @@ class Medicare extends React.Component {
       return ( <Insurance primary={true}
                           secondary={false}
                           getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
-                          handleEdit={this.props.handleEdit}
+                          handleEdit={this.handleEdit.bind(this)}
                           handleNext={this.props.handleNext}
                           handlePrev={this.props.handlePrev}
                           reviewing={this.props.reviewing}
@@ -176,21 +210,25 @@ class Medicare extends React.Component {
     }
 
     if(this.state.hasOtherIns === true) {
-      return ( <OtherSecondaryInsurance handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
+      return ( <OtherSecondaryInsurance handleEdit={this.handleEdit.bind(this)}
+                                        handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
     }
 
     if(this.state.hasOtherIns === false) {
-      return ( <NoInsurance /> )
+      return ( <NoInsurance handleEdit={this.handleEdit.bind(this)} /> )
     }
 
     if(this.state.isMedicarePrim === null) {
-      return ( <MedicarePrimaryQuestion handleMedicarePrim={this.handleMedicarePrim.bind(this)} /> )
+      return ( <MedicarePrimaryQuestion handlePrev={this.props.handlePrev}
+                                        handleMedicarePrim={this.handleMedicarePrim.bind(this)} /> )
     }
 
     if(this.state.isMedicarePrim === true) {
-      return ( <OtherSecondaryInsurance handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
+      return ( <OtherSecondaryInsurance handleEdit={this.handleEdit.bind(this)}
+                                        handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
     } else {
-      return ( <OtherInsurance handleOtherIns={this.handleOtherIns.bind(this)} /> )
+      return ( <OtherInsurance handleEdit={this.handleEdit.bind(this)}
+                               handleOtherIns={this.handleOtherIns.bind(this)} /> )
     }
   }
 

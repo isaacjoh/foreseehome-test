@@ -91,17 +91,15 @@ class Insurance extends React.Component {
             </div>
           )}
 
-          <div className="spacer-medium"></div>
-
-          {this.state.uploadComplete && (
-            <StepButtons handleEdit={this.props.handleEdit}
-                         handleNext={this.props.handleNext}
-                         handlePrev={this.props.handlePrev}
-                         reviewing={this.props.reviewing}
-                         saveValues={this.props.saveValues}
-                         stepIndex={this.props.stepIndex}
-                         validated={true} />
-          )}
+          <div className="spacer"></div>
+          <StepButtons handleEdit={this.props.handleEdit}
+                       handleNext={this.props.handleNext}
+                       handlePrev={this.props.handlePrev}
+                       insuring={true}
+                       reviewing={this.props.reviewing}
+                       saveValues={this.props.saveValues}
+                       stepIndex={this.props.stepIndex}
+                       validated={this.state.uploadComplete} />
         </Formsy.Form>
       </div>
     );
