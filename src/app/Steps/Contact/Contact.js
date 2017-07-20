@@ -127,7 +127,7 @@ const Contact = React.createClass({
         <Paper style={paperStyle}>
           <Formsy.Form onValid={this.enableButton}
                        onInvalid={this.disableButton}>
-            <h2>Step 2: Contact Information</h2>
+            <h2>Step 3: Contact Information</h2>
             <h3 style={shippingSectionStyle}>Your Shipping Address</h3>
             <h5 style={shippingSubsectionStyle}>
               <i>Where can we ship your ForeseeHome device?</i>

@@ -94,7 +94,7 @@ const Review = React.createClass({
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
-          <h2>Step 4: Review & Submit</h2>
+          <h2>Step 5: Review & Submit</h2>
           <h4>
             <i>Make sure everything looks right!</i>
           </h4>

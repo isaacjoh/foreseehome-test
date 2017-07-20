@@ -17,6 +17,7 @@ import Contact from './Contact/Contact';
 import Medicare from './Insurance/Medicare';
 import Review from './Review/Review';
 import Confirmation from './Confirmation/Confirmation';
+import Prescription from './Prescription/Prescription';
 
 const getStyles = () => {
   return {
@@ -65,7 +66,8 @@ class HorizontalLinearStepper extends React.Component {
         phone: null,
         email: null,
         primaryInsSrc: null,
-        secondaryInsSrc: null
+        secondaryInsSrc: null,
+        prescriptionSrc: null
       },
       width: window.innerWidth
     };
@@ -105,13 +107,13 @@ class HorizontalLinearStepper extends React.Component {
   handleNext = () => {
     const {stepIndex} = this.state;
 
-    if (stepIndex < 5) {
+    if (stepIndex < 6) {
       this.setState({
         stepIndex: stepIndex + 1
       });
     }
 
-    if (stepIndex === 3) {
+    if (stepIndex === 4) {
       this.setState({
         reviewing: true
       });
@@ -126,6 +128,18 @@ class HorizontalLinearStepper extends React.Component {
       });
     }
   }
+
+  getPrescriptionSrc = (src) => {
+    let field_value = {
+      prescriptionSrc: src
+    }
+
+    let fieldValues = this.state.fieldValues;
+    fieldValues = Object.assign({}, fieldValues, field_value);
+
+    this.setState({fieldValues: fieldValues});
+  }
+
 
   getPrimaryScreenshotSrc = (src) => {
     let field_value = {
@@ -163,6 +177,14 @@ class HorizontalLinearStepper extends React.Component {
   getStepContent(stepIndex) {
     switch (stepIndex) {
       case 1:
+        return <Prescription getPrescriptionSrc={this.getPrescriptionSrc}
+                             handleEdit={this.handleEdit}
+                             handleNext={this.handleNext}
+                             handlePrev={this.handlePrev}
+                             reviewing={this.state.reviewing}
+                             saveValues={this.saveValues}
+                             stepIndex={this.state.stepIndex} />;
+      case 2:
         return <Personal fieldValues={this.state.fieldValues}
                          handleEdit={this.handleEdit}
                          handleNext={this.handleNext}
@@ -170,7 +192,7 @@ class HorizontalLinearStepper extends React.Component {
                          reviewing={this.state.reviewing}
                          saveValues={this.saveValues}
                          stepIndex={this.state.stepIndex} /> ;
-      case 2:
+      case 3:
         return <Contact fieldValues={this.state.fieldValues}
                         handleEdit={this.handleEdit}
                         handleNext={this.handleNext}
@@ -178,7 +200,7 @@ class HorizontalLinearStepper extends React.Component {
                         reviewing={this.state.reviewing}
                         saveValues={this.saveValues}
                         stepIndex={this.state.stepIndex} />;
-      case 3:
+      case 4:
         return <Medicare getPrimaryScreenshotSrc={this.getPrimaryScreenshotSrc}
                          getSecondaryScreenshotSrc={this.getSecondaryScreenshotSrc}
                          handleEdit={this.handleEdit}
@@ -187,7 +209,7 @@ class HorizontalLinearStepper extends React.Component {
                          reviewing={this.state.reviewing}
                          saveValues={this.saveValues}
                          stepIndex={this.state.stepIndex} />;
-      case 4:
+      case 5:
         return <Review fieldValues={this.state.fieldValues}
                        handleEdit={this.handleEdit}
                        handleNext={this.handleNext}
@@ -195,7 +217,7 @@ class HorizontalLinearStepper extends React.Component {
                        saveValues={this.saveValues}
                        submitForm={this.submitForm}
                        stepIndex={this.state.stepIndex} />;
-      case 5:
+      case 6:
         return <Confirmation fieldValues={this.state.fieldValues} />;
       }
   }
@@ -210,13 +232,16 @@ class HorizontalLinearStepper extends React.Component {
       <div>
         <Stepper activeStep={stepIndex - 1} style={scroll}>
           <Step>
-            <StepLabel>Personal Information</StepLabel>
+            <StepLabel>Prescription</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Contact Information</StepLabel>
+            <StepLabel>Personal</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Insurance Information</StepLabel>
+            <StepLabel>Contact</StepLabel>
+          </Step>
+          <Step>
+            <StepLabel>Insurance</StepLabel>
           </Step>
           <Step>
             <StepLabel>Review</StepLabel>

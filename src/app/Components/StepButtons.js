@@ -58,7 +58,7 @@ class StepButtons extends React.Component {
               />
               <RaisedButton
                 disabled={!this.props.validated}
-                label={this.props.stepIndex === 4 ? 'Done!' : 'Next'}
+                label={this.props.stepIndex === 5 ? 'Done!' : 'Next'}
                 primary={true}
                 onTouchTap={this.handleNext}
               />

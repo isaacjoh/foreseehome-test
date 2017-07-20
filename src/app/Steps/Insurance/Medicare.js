@@ -245,10 +245,10 @@ class Medicare extends React.Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
-          <h2>Step 3: Insurance Information</h2>
+          <h2>Step 4: Insurance Information</h2>
           {this.getInsuranceSubStep()}
         </Paper>
-        </MuiThemeProvider>
+      </MuiThemeProvider>
     );
   }
 }

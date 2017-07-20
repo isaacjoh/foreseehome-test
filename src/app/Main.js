@@ -98,18 +98,6 @@ class Main extends React.Component {
     });
   }
 
-  toggleShowRx(){
-    this.setState({
-      showRx: !this.state.showRx
-    });
-  }
-
-  hideRx(){
-    this.setState({
-      showRx: false
-    });
-  }
-
   isDisabled(){
     if(this.state.rxId){
       this.setState({
@@ -155,20 +143,7 @@ class Main extends React.Component {
             <MuiThemeProvider muiTheme={muiTheme}>
               <Card className="foresee-form">
                 <h2> Welcome to ForeseeHome!</h2>
-                <p>Thank you for taking the next step in monitoring your AMD. Let's complete your enrollment so that you can begin using ForeseeHome as soon as possible.</p>
-
-                <p>What is your Rx Number?</p>
-                <TextField floatingLabelText="Rx Number"
-                           floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}} />
-                <IconButton className="physician-popover" id="rx" onClick={() => this.toggleShowRx()}>
-                  <FontIcon className="material-icons">help</FontIcon>
-                </IconButton>
-
-                {showRx ? (
-                  <div style={styles.rxDiv} onClick={() => this.hideRx()}>
-                    <img style={styles.rxImg} src="static/img/rx_number.png" alt="" />
-                  </div>
-                ) : ''}
+                <p>Thank you for taking the next step in AMD prevention. Let's complete your enrollment so that  you can begin monitoring as soon as possible.</p>
 
                 <div className="submit-btn-div">
                   <RaisedButton label="Let's get started" primary={true} onClick={() => this.shouldOpenForm() } />

@@ -103,7 +103,7 @@ const Personal = React.createClass({
         <Paper style={paperStyle}>
           <Formsy.Form onValid={this.enableButton}
                        onInvalid={this.disableButton}>
-            <h2>Step 1: Personal Information</h2>
+            <h2>Step 2: Personal Information</h2>
             <div>
               <FormsyText
                 name="full name"
