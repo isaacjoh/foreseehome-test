@@ -184,7 +184,7 @@ const Contact = React.createClass({
 
               <h3 style={contactSectionStyle}>Your Contact Information</h3>
               <h5 className="phone-subtext">
-                <i>We will only contact you if we have a question regarding your shipping or insurance information.</i>
+                <i>Please provide the best phone number to reach you.</i>
               </h5>
               <div>
                 <FormsyText name="phone"

@@ -134,7 +134,6 @@ class Medicare extends React.Component {
       hasOtherSecIns: null,
       isMedicarePrim: null
     }
-
   }
 
   componentDidMount() {
