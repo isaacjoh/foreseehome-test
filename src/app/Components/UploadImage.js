@@ -16,7 +16,7 @@ class UploadImage extends React.Component {
     };
 
     if (props.imagePreviewUrl) {
-      this.props.getScreenshotSrc(imagePreviewUrl);
+      this.props.getScreenshotSrc(props.imagePreviewUrl);
     }
   }
 
@@ -95,7 +95,7 @@ class UploadImage extends React.Component {
 
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<div className="preview-text"><img src={imagePreviewUrl} /></div> );
+      $imagePreview = (<div className={'img-preview text-center'}><div className="preview-text"><img src={imagePreviewUrl} /></div></div> );
     } else {
       $imagePreview = (<div className="preview-text"></div>);
     }

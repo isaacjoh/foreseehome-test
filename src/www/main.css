@@ -166,6 +166,16 @@ iframe {
   display: block;
 }
 
+.review-table {
+  position: relative;
+}
+
+.review-table button {
+  position: absolute !important;
+  right: 0;
+  top: -7px;
+}
+
 .review-table table {
   table-layout: auto !important;
 }
@@ -187,12 +197,7 @@ iframe {
 }
 
 .review-table tr td:nth-child(3) {
-  width: 55% !important;
-}
-
-.review-table tr td:last-child {
-  text-align: right !important;
-  width: 15% !important;
+  width: 70% !important;
 }
 
 .spacer {
@@ -263,6 +268,7 @@ input[name='state'] {
 
   .review-img button {
     position: relative !important;
+    right: -25px;
     text-align: right !important;
     width: 100%;
   }
@@ -300,10 +306,6 @@ input[name='state'] {
 @media only screen and (max-width: 1024px) {
   .retake-btn {
     margin-top: 10px;
-  }
-
-  .review-img button {
-    right: -25px;
   }
 
   .webcam-container {

@@ -158,8 +158,7 @@ class Prescription extends React.Component {
 
   enableButton() {
     this.setState({
-      canSubmit: true,
-      hasPrescription: true
+      canSubmit: true
     });
   }
 
@@ -171,6 +170,14 @@ class Prescription extends React.Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
+
+    var warn = console.warn;
+    console.warn = function(warning) {
+      if (/(setState)/.test(warning)) {
+        throw new Error(warning);
+      }
+      warn.apply(console, arguments);
+    };
   }
 
   hideRx(){
@@ -187,7 +194,11 @@ class Prescription extends React.Component {
 
   getPrescriptionSrc(src){
     if (src) {
-      this.enableButton();
+      this.setState({
+        hasPrescription: true,
+        canSubmit: true
+      });
+
       this.props.getPrescriptionSrc(src);
     }
   }
