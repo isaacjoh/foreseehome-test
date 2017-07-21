@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import Insurance from './Insurance';
+import Insurance2 from './Insurance2';
 import FlatButton from 'material-ui/FlatButton';
 
 import StepButtons from '../../Components/StepButtons';
@@ -185,15 +186,15 @@ class Medicare extends React.Component {
 
   getInsuranceSubStep(){
     if (this.state.hasOtherSecIns === true) {
-      return ( <Insurance primary={false}
-                          secondary={true}
-                          getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
-                          handleEdit={this.handleEdit.bind(this)}
-                          handleNext={this.props.handleNext}
-                          handlePrev={this.props.handlePrev}
-                          reviewing={this.props.reviewing}
-                          saveValues={this.props.saveValues}
-                          stepIndex={this.props.stepIndex} /> )
+      return ( <Insurance2 primary={false}
+                           secondary={true}
+                           getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
+                           handleEdit={this.handleEdit.bind(this)}
+                           handleNext={this.props.handleNext}
+                           handlePrev={this.props.handlePrev}
+                           reviewing={this.props.reviewing}
+                           saveValues={this.props.saveValues}
+                           stepIndex={this.props.stepIndex} /> )
     }
 
     if(this.state.isMedicarePrim === null) {

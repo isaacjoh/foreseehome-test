@@ -94,6 +94,8 @@ const Review = React.createClass({
       'Secondary Insurance Back': data.secondaryInsBackSrc
     };
 
+    console.log(insuranceData);
+
     let prescriptionData = {
       'Prescription': data.prescriptionSrc
     }
@@ -103,6 +105,8 @@ const Review = React.createClass({
     let rxNumberData = {
       'Rx Number': data.rxNumber
     }
+
+    console.log(rxNumberData);
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>

@@ -11,7 +11,8 @@ class UploadImage extends React.Component {
       file: '',
       imagePreviewUrl: '',
       mobileImagePreviewUrl: null,
-      reset: true
+      reset: true,
+      resetPreviews: null
     };
   }
 
@@ -66,12 +67,19 @@ class UploadImage extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
+    let resetPreviews = this.state.resetPreviews || nextProps.resetPreviews;
 
+    if (resetPreviews !== 'completed' && resetPreviews) {
+      this.setState({
+        resetPreviews: 'completed'
+      });
+
+      this.onReset();
+    }
   }
 
   componentWillMount() {
     this.id = newId();
-    this.onReset();
   }
 
   render() {

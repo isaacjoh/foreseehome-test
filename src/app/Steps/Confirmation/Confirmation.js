@@ -27,7 +27,7 @@ const getStyles = () => {
     },
     redBorder: {
       border: '1px solid red',
-      padding: 7,
+      padding: '3px 7px',
       textAlign: 'center'
     }
   };

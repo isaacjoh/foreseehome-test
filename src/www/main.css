@@ -29,6 +29,10 @@ span:not(.material-icons) {
   font-family: 'acherus_grotesque_regular' !important;
 }
 
+b {
+  font-family: 'acherus_grotesque_bold' !important;
+}
+
 pre {
   overflow: hidden;
 }
