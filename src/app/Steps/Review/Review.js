@@ -98,6 +98,8 @@ const Review = React.createClass({
       'Prescription': data.prescriptionSrc
     }
 
+    console.log(prescriptionData);
+
     let rxNumberData = {
       'Rx Number': data.rxNumber
     }

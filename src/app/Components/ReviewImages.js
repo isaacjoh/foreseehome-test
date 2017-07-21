@@ -20,6 +20,7 @@ class ReviewImages extends React.Component {
               </div>
             )
           }
+
           {
             this.props.data['Secondary Insurance'] && (
               <div className="review-img">
@@ -28,6 +29,18 @@ class ReviewImages extends React.Component {
                         onTouchTap={() => this.props.handleEdit(this.props.step)} />
                 <div className="img-preview">
                   <img src={this.props.data['Secondary Insurance']} alt="Insurance image"/>
+                </div>
+              </div>
+            )
+          }
+
+          {
+            this.props.data['Prescription'] && (
+              <div className="review-img">
+                <FlatButton label="Edit"
+                        onTouchTap={() => this.props.handleEdit(this.props.step)} />
+                <div className="img-preview">
+                  <img src={this.props.data['Prescription']} alt="Prescription image"/>
                 </div>
               </div>
             )
