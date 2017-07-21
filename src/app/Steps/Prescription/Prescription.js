@@ -89,7 +89,7 @@ const RxNumber = function(props){
       <TextField floatingLabelText="Rx Number"
                  floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}}
                  onChange={(ev, value) => props.checkInputValue(value)}
-                 ref={(rxNumber) => {this._rxNumber = rxNumber}} />
+                 ref={(rxNumber) => {() => {this._rxNumber = rxNumber}}} />
       <IconButton className="physician-popover" id="rx" onClick={() => props.toggleShowRx()}>
         <FontIcon className="material-icons">help</FontIcon>
       </IconButton>
