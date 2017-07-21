@@ -88,7 +88,8 @@ const RxNumber = function(props){
       <p>What is your Rx Number?</p>
       <TextField floatingLabelText="Rx Number"
                  floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}}
-                 onChange={(ev, value) => props.checkInputValue(value)} />
+                 onChange={(ev, value) => props.checkInputValue(value)}
+                 ref={(rxNumber) => {this._rxNumber = rxNumber}} />
       <IconButton className="physician-popover" id="rx" onClick={() => props.toggleShowRx()}>
         <FontIcon className="material-icons">help</FontIcon>
       </IconButton>
@@ -200,6 +201,14 @@ class Prescription extends React.Component {
   render() {
     let { paperStyle, inputStyle, prescriptionSectionStyle, helperText } = styles;
 
+    let data = {};
+
+    if (this._rxNumber) {
+      data = {
+        rxNumber: this._rxNumber.state.value
+      };
+    }
+
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
@@ -207,7 +216,8 @@ class Prescription extends React.Component {
           {this.getPrescriptionSubStep()}
 
           <div className="spacer-medium"></div>
-          <StepButtons handleEdit={this.props.handleEdit}
+          <StepButtons data={data}
+                       handleEdit={this.props.handleEdit}
                        handleNext={this.props.handleNext}
                        handlePrev={this.props.handlePrev}
                        reviewing={this.props.reviewing}

@@ -65,6 +65,7 @@ class HorizontalLinearStepper extends React.Component {
         zip: null,
         phone: null,
         email: null,
+        rxNumber: null,
         primaryInsSrc: null,
         secondaryInsSrc: null,
         prescriptionSrc: null

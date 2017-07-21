@@ -20,41 +20,6 @@ import HorizontalLinearStepper from './Steps/Form.js';
 //form wrapper
 import Formsy from 'formsy-react';
 
-const isMobile = window.innerWidth <= 767;
-let rxDiv = {};
-let rxImg = {
-  bottom: '10%',
-  height: 150,
-  position: 'absolute',
-  right: '12%',
-  width: 300
-};
-
-if (isMobile) {
-  rxDiv = {
-    background: 'rgba(0, 0, 0, 0.4)',
-    height: '100%',
-    left: 0,
-    margin: 'auto',
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    width: '100%',
-    zIndex: 2
-  };
-
-  rxImg = {
-    bottom: 0,
-    height: 150,
-    left: 0,
-    margin: 'auto',
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    width: 300
-  }
-}
-
 const styles = {
   container: {
     textAlign: 'center',
@@ -64,9 +29,6 @@ const styles = {
     marginRight: 12,
   }
 };
-
-styles.rxDiv = rxDiv;
-styles.rxImg = rxImg;
 
 const muiTheme = getMuiTheme({
   palette: {

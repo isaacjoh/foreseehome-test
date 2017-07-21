@@ -16,6 +16,7 @@ import ReviewImages from '../../Components/ReviewImages';
 
 let paddingValue = 40;
 const isMobile = window.innerWidth <= 767;
+const isTablet = window.innerWidth <= 1025;
 
 if (isMobile) {
   paddingValue = 25;
@@ -99,21 +100,37 @@ const Review = React.createClass({
             <i>Make sure everything looks right!</i>
           </h4>
 
+          {
+            isTablet ? (
+              <ReviewImages title="Prescription Information"
+                            data={prescriptionData}
+                            step={1}
+                            handleEdit={this.props.handleEdit}
+                            handleNext={this.props.handleNext} />
+            ) : (
+              <ReviewTables title="Prescription Information"
+                            data={prescriptionData}
+                            step={1}
+                            handleEdit={this.props.handleEdit}
+                            handleNext={this.props.handleNext} />
+            )
+          }
+
           <ReviewTables title="Personal Information"
                         data={personalData}
-                        step={1}
+                        step={2}
                         handleEdit={this.props.handleEdit}
                         handleNext={this.props.handleNext} />
 
           <ReviewTables title="Contact Information"
                         data={contactData}
-                        step={2}
+                        step={3}
                         handleEdit={this.props.handleEdit}
                         handleNext={this.props.handleNext} />
 
           <ReviewImages title="Insurance Information"
                         data={insuranceData}
-                        step={3}
+                        step={4}
                         handleEdit={this.props.handleEdit}
                         handleNext={this.props.handleNext} />
 

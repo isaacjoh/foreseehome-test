@@ -25,6 +25,10 @@ const getStyles = () => {
     submitStyle: {
       marginTop: 32,
     },
+    redBorder: {
+      border: '1px solid red',
+      textAlign: 'center'
+    }
   };
 
   const isMobile = window.innerWidth <= 767;
@@ -66,8 +70,21 @@ const Confirmation = React.createClass({
 
           <div className="confirmation-text">
             <p>Congratulations on <i>taking your first step toward preserving vision</i>! We have received your ForeseeHome enrollment.</p>
-            <p>A Notal Vision Enrollment Specialist will be contacting you within 24-48 hours. If you need immediate assistance, please call Customer Service at 1-888-910-2020.</p>
-            <p>In the meantime, we encourage you to continue to learn more about AMD and ForeseeHome.</p>
+
+            {
+              this.props.fieldValues.primaryInsSrc ? (
+                <div>
+                  <p>A Notal Vision Enrollment Specialist will be contacting you within 24-48 hours. If you need immediate assistance, please call Customer Service at 1-888-910-2020.</p>
+                  <p>In the meantime, we encourage you to continue to learn more about AMD and ForeseeHome.</p>
+                </div>
+              ) : (
+                <div style={styles.redBorder}>
+                  <p>
+                    <b>In order for us to complete your enrollment</b>, please contact the Notal Vision Customer Service Team at 1-888-910-2020.
+                  </p>
+                </div>
+              )
+            }
           </div>
 
           <iframe src="https://player.vimeo.com/video/77988968" frameBorder="0"></iframe>
