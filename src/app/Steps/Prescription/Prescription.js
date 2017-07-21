@@ -110,7 +110,7 @@ const RxNumberUpload = function(props){
   return (
     <div>
       <h3>Please take a picture of your prescription</h3>
-      <UploadImage getScreenshotSrc={props.getPrescriptionSrc} />
+      <UploadImage getScreenshotSrc={props.getPrescriptionSrc} imagePreviewUrl={props.fieldValues.prescriptionSrc} />
       <div className="spacer-small"></div>
 
       <RaisedButton
@@ -196,7 +196,8 @@ class Prescription extends React.Component {
     if (isTablet) {
       return ( <RxNumberUpload getPrescriptionSrc={this.getPrescriptionSrc.bind(this)}
                                enterRxNumber={this.enterRxNumber.bind(this)}
-                               hasPrescription={this.state.hasPrescription} /> )
+                               hasPrescription={this.state.hasPrescription}
+                               fieldValues={this.props.fieldValues} /> )
     } else {
       return ( <RxNumber checkInputValue={this.checkInputValue.bind(this)}
                          showRx={this.state.showRx}
@@ -226,13 +227,13 @@ class Prescription extends React.Component {
 
             <div className="spacer-medium"></div>
             <StepButtons data={data}
-                        handleEdit={this.props.handleEdit}
-                        handleNext={this.props.handleNext}
-                        handlePrev={this.props.handlePrev}
-                        reviewing={this.props.reviewing}
-                        saveValues={this.props.saveValues}
-                        stepIndex={this.props.stepIndex}
-                        validated={this.state.canSubmit} />
+                         handleEdit={this.props.handleEdit}
+                         handleNext={this.props.handleNext}
+                         handlePrev={this.props.handlePrev}
+                         reviewing={this.props.reviewing}
+                         saveValues={this.props.saveValues}
+                         stepIndex={this.props.stepIndex}
+                         validated={this.state.canSubmit} />
           </Formsy.Form>
         </Paper>
       </MuiThemeProvider>

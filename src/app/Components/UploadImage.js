@@ -9,11 +9,15 @@ class UploadImage extends React.Component {
     super(props);
     this.state = {
       file: '',
-      imagePreviewUrl: '',
+      imagePreviewUrl: props.imagePreviewUrl || '',
       mobileImagePreviewUrl: null,
       reset: true,
       resetPreviews: null
     };
+
+    if (props.imagePreviewUrl) {
+      this.props.getScreenshotSrc(imagePreviewUrl);
+    }
   }
 
   _handleImageChange(e) {
@@ -24,8 +28,8 @@ class UploadImage extends React.Component {
 
     reader.onloadend = () => {
       if (this.props.getScreenshotSrc) {
-      this.props.getScreenshotSrc(reader.result);
-    }
+        this.props.getScreenshotSrc(reader.result);
+      }
 
       this.setState({
         file: file,
@@ -91,7 +95,7 @@ class UploadImage extends React.Component {
 
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
+      $imagePreview = (<div className="preview-text"><img src={imagePreviewUrl} /></div> );
     } else {
       $imagePreview = (<div className="preview-text"></div>);
     }
