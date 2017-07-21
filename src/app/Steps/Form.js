@@ -116,8 +116,6 @@ class HorizontalLinearStepper extends React.Component {
       });
     }
 
-    console.log(stepIndex);
-
     if (stepIndex === 4) {
       this.setState({
         reviewing: true

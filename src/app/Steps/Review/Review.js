@@ -138,11 +138,13 @@ const Review = React.createClass({
                         handleEdit={this.props.handleEdit}
                         handleNext={this.props.handleNext} />
 
-          <ReviewImages title="Insurance Information"
-                        data={insuranceData}
-                        step={4}
-                        handleEdit={this.props.handleEdit}
-                        handleNext={this.props.handleNext} />
+          { insuranceData['Primary Insurance Front'] && (
+            <ReviewImages title="Insurance Information"
+                          data={insuranceData}
+                          step={4}
+                          handleEdit={this.props.handleEdit}
+                          handleNext={this.props.handleNext} />
+          )}
 
           <div className="spacer-medium"></div>
 
