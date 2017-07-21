@@ -72,7 +72,7 @@ const Confirmation = React.createClass({
             <p>Congratulations on <i>taking your first step toward preserving vision</i>! We have received your ForeseeHome enrollment.</p>
 
             {
-              this.props.fieldValues.primaryInsSrc ? (
+              this.props.fieldValues.primaryInsFrontSrc ? (
                 <div>
                   <p>A Notal Vision Enrollment Specialist will be contacting you within 24-48 hours. If you need immediate assistance, please call Customer Service at 1-888-910-2020.</p>
                   <p>In the meantime, we encourage you to continue to learn more about AMD and ForeseeHome.</p>

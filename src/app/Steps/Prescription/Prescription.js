@@ -114,7 +114,7 @@ const RxNumberUpload = function(props){
 
       <RaisedButton
         className={props.hasPrescription ? 'hide' : ''}
-        label="I don't have a prescription"
+        label="I don't have one"
         primary={true}
         onTouchTap={props.enterRxNumber}
       />

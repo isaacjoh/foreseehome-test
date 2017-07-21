@@ -66,8 +66,10 @@ class HorizontalLinearStepper extends React.Component {
         phone: null,
         email: null,
         rxNumber: null,
-        primaryInsSrc: null,
-        secondaryInsSrc: null,
+        primaryInsFrontSrc: null,
+        primaryInsBackSrc: null,
+        secondaryInsFrontSrc: null,
+        secondaryInsBackSrc: null,
         prescriptionSrc: null
       },
       width: window.innerWidth
@@ -144,7 +146,7 @@ class HorizontalLinearStepper extends React.Component {
 
   getPrimaryScreenshotSrc = (src) => {
     let field_value = {
-      primaryInsSrc: src
+      primaryInsFrontSrc: src
     }
 
     let fieldValues = this.state.fieldValues;
@@ -155,7 +157,7 @@ class HorizontalLinearStepper extends React.Component {
 
   getSecondaryScreenshotSrc = (src) => {
     let field_value = {
-      secondaryInsSrc: src
+      secondaryInsFrontSrc: src
     }
 
     let fieldValues = this.state.fieldValues;

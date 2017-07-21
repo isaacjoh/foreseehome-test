@@ -88,8 +88,8 @@ const Review = React.createClass({
       };
 
     let insuranceData = {
-      'Primary Insurance': data.primaryInsSrc,
-      'Secondary Insurance': data.secondaryInsSrc
+      'Primary Insurance': data.primaryInsFrontSrc,
+      'Secondary Insurance': data.secondaryInsFrontSrc
     };
 
     return (

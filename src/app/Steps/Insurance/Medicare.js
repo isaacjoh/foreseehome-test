@@ -67,7 +67,7 @@ const OtherSecondaryInsurance = function(props){
                       onTouchTap={() => props.handleOtherSecIns(true)} />
         <RaisedButton label="No"
                       secondary={true}
-                      onTouchTap={() => props.handleOtherSecIns(false)} />
+                      onTouchTap={() => props.handleEdit(5)} />
       </div>
       <div className="spacer"></div>
       <StepButtons data={{}}
@@ -81,7 +81,7 @@ const OtherSecondaryInsurance = function(props){
 const MedicarePrimaryQuestion = function(props){
   return (
     <div>
-      <h3>Is Medicare your primary form of insurance?</h3>
+      <h3>Do you have health insurance (e.g. Medicare)?</h3>
         <div>
           <RaisedButton label="Yes"
                         secondary={true}
@@ -89,7 +89,7 @@ const MedicarePrimaryQuestion = function(props){
                         onTouchTap={() => props.handleMedicarePrim(true)} />
           <RaisedButton label="No"
                         secondary={true}
-                        onTouchTap={() => props.handleMedicarePrim(false)} />
+                        onTouchTap={() => this.props.handleEdit(5)} />
       </div>
       <div className="spacer"></div>
       <StepButtons data={{}}
@@ -106,7 +106,7 @@ const NoInsurance = function(props){
         Even though you have no insurance, we may be able to help.
       </p>
       <p>
-        Please call 800-XXX-XXXX to discuss your options.
+        Please call 1-800-XXX-XXXX to discuss your options.
       </p>
       <div className="spacer"></div>
       <div>
@@ -225,9 +225,6 @@ class Medicare extends React.Component {
     if(this.state.isMedicarePrim === true) {
       return ( <OtherSecondaryInsurance handleEdit={this.handleEdit.bind(this)}
                                         handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
-    } else {
-      return ( <OtherInsurance handleEdit={this.handleEdit.bind(this)}
-                               handleOtherIns={this.handleOtherIns.bind(this)} /> )
     }
   }
 
@@ -236,7 +233,7 @@ class Medicare extends React.Component {
 
     let data = {};
 
-    if (this._fullName) {
+    if (this._insuranceInfo) {
       data = {
         insuranceInfo: this._insuranceInfo.state.value
       };

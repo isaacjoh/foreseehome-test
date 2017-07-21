@@ -20,8 +20,8 @@ class Insurance extends React.Component {
     super(props);
     this.state = {
       canSubmit: false,
-      primaryInsSrc: null,
-      secondaryInsSrc: null,
+      primaryInsFrontSrc: null,
+      secondaryInsFrontSrc: null,
       shipState: '',
       uploadComplete: false
     };
@@ -44,25 +44,25 @@ class Insurance extends React.Component {
   }
 
   getPrimaryScreenshotSrc = (src) => {
-    this.setState({primaryInsSrc: src}, () => this.onUploadComplete());
+    this.setState({primaryInsFrontSrc: src}, () => this.onUploadComplete());
     this.props.getPrimaryScreenshotSrc(src);
   }
 
   getSecondaryScreenshotSrc = (src) => {
-    this.setState({secondaryInsSrc: src}, () => this.onUploadComplete());
+    this.setState({secondaryInsFrontSrc: src}, () => this.onUploadComplete());
     this.props.getSecondaryScreenshotSrc(src);
   }
 
   onUploadComplete = () => {
     if (this.props.secondary) {
-      if (this.state.secondaryInsSrc && this.state.primaryInsSrc) {
+      if (this.state.secondaryInsFrontSrc && this.state.primaryInsFrontSrc) {
         this.setState({uploadComplete: true});
       }
       else {
         this.setState({uploadComplete: false});
       }
     } else {
-      if (this.state.primaryInsSrc) {
+      if (this.state.primaryInsFrontSrc) {
         this.setState({uploadComplete: true});
       }
       else {
