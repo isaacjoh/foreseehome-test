@@ -86,10 +86,11 @@ const RxNumber = function(props){
   return (
     <div style={{position: 'relative'}}>
       <p>What is your Rx Number?</p>
-      <TextField floatingLabelText="Rx Number"
-                 floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}}
-                 onChange={(ev, value) => props.checkInputValue(value)}
-                 ref={(rxNumber) => {() => {this._rxNumber = rxNumber}}} />
+      <FormsyText floatingLabelText="Rx Number"
+                  floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}}
+                  name="rxNumber"
+                  value={props.fieldValues.rxNumber}
+                  onChange={(ev, value) => props.checkInputValue(value)} />
       <IconButton className="physician-popover" id="rx" onClick={() => props.toggleShowRx()}>
         <FontIcon className="material-icons">help</FontIcon>
       </IconButton>
@@ -108,7 +109,7 @@ const RxNumber = function(props){
 const RxNumberUpload = function(props){
   return (
     <div>
-      <h3>Please take a picture of your prescription.</h3>
+      <h3>Please take a picture of your prescription</h3>
       <UploadImage getScreenshotSrc={props.getPrescriptionSrc} />
       <div className="spacer-small"></div>
 
@@ -132,19 +133,16 @@ class Prescription extends React.Component {
       canSubmit: false,
       hasPrescription: false,
       showRx: false,
-      reset: true
+      reset: true,
+      rxNumber: null
     }
-  }
-
-  enableButton() {
-    this.setState({
-      canSubmit: true,
-      hasPrescription: true
-    });
   }
 
   checkInputValue(value) {
     if (value) {
+      this.setState({
+        rxNumber: value
+      });
       this.enableButton();
     } else {
       this.disableButton();
@@ -155,6 +153,13 @@ class Prescription extends React.Component {
     isTablet = false;
     this.setState({
       reset: true
+    });
+  }
+
+  enableButton() {
+    this.setState({
+      canSubmit: true,
+      hasPrescription: true
     });
   }
 
@@ -194,6 +199,7 @@ class Prescription extends React.Component {
       return ( <RxNumber checkInputValue={this.checkInputValue.bind(this)}
                          showRx={this.state.showRx}
                          hideRx={this.hideRx.bind(this)}
+                         fieldValues={this.props.fieldValues}
                          toggleShowRx={this.toggleShowRx.bind(this)} /> )
     }
   }
@@ -203,27 +209,30 @@ class Prescription extends React.Component {
 
     let data = {};
 
-    if (this._rxNumber) {
+    if (this.state.rxNumber) {
       data = {
-        rxNumber: this._rxNumber.state.value
+        rxNumber: this.state.rxNumber
       };
     }
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
-          <h2>Step 1: Prescription Information</h2>
-          {this.getPrescriptionSubStep()}
+          <Formsy.Form onValid={this.enableButton.bind(this)}
+                       onInvalid={this.disableButton.bind(this)}>
+            <h2>Step 1: Prescription Information</h2>
+            {this.getPrescriptionSubStep()}
 
-          <div className="spacer-medium"></div>
-          <StepButtons data={data}
-                       handleEdit={this.props.handleEdit}
-                       handleNext={this.props.handleNext}
-                       handlePrev={this.props.handlePrev}
-                       reviewing={this.props.reviewing}
-                       saveValues={this.props.saveValues}
-                       stepIndex={this.props.stepIndex}
-                       validated={this.state.canSubmit} />
+            <div className="spacer-medium"></div>
+            <StepButtons data={data}
+                        handleEdit={this.props.handleEdit}
+                        handleNext={this.props.handleNext}
+                        handlePrev={this.props.handlePrev}
+                        reviewing={this.props.reviewing}
+                        saveValues={this.props.saveValues}
+                        stepIndex={this.props.stepIndex}
+                        validated={this.state.canSubmit} />
+          </Formsy.Form>
         </Paper>
       </MuiThemeProvider>
     );

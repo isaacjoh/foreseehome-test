@@ -14,18 +14,24 @@ import Dropzone from 'react-dropzone'
 import UploadImage from '../../Components/UploadImage';
 import StepButtons from '../../Components/StepButtons';
 
-class Insurance extends React.Component {
 
+
+class Insurance extends React.Component {
   constructor(props) {
     super(props);
+
+    let insuranceType = props.primary === true ? 'primary' : 'secondary';
+
     this.state = {
       canSubmit: false,
-      primaryInsFrontSrc: null,
-      secondaryInsFrontSrc: null,
+      insuranceType: insuranceType,
+      InsFrontSrc: null,
+      InsBackSrc: null,
       shipState: '',
       uploadComplete: false
     };
   }
+
 
   componentWillUpdate(nextProps, nextState) {
     const {stepIndex} = nextState;
@@ -44,30 +50,21 @@ class Insurance extends React.Component {
   }
 
   getPrimaryScreenshotSrc = (src) => {
-    this.setState({primaryInsFrontSrc: src}, () => this.onUploadComplete());
-    this.props.getPrimaryScreenshotSrc(src);
+    this.setState({InsFrontSrc: src}, () => this.onUploadComplete());
+    this.props.getPrimaryScreenshotSrc(src, this.state.insuranceType + 'InsFrontSrc');
   }
 
   getSecondaryScreenshotSrc = (src) => {
-    this.setState({secondaryInsFrontSrc: src}, () => this.onUploadComplete());
-    this.props.getSecondaryScreenshotSrc(src);
+    this.setState({InsBackSrc: src}, () => this.onUploadComplete());
+    this.props.getPrimaryScreenshotSrc(src, this.state.insuranceType + 'InsBackSrc');
   }
 
   onUploadComplete = () => {
-    if (this.props.secondary) {
-      if (this.state.secondaryInsFrontSrc && this.state.primaryInsFrontSrc) {
-        this.setState({uploadComplete: true});
-      }
-      else {
-        this.setState({uploadComplete: false});
-      }
-    } else {
-      if (this.state.primaryInsFrontSrc) {
-        this.setState({uploadComplete: true});
-      }
-      else {
-        this.setState({uploadComplete: false});
-      }
+    if (this.state.InsFrontSrc && this.state.InsBackSrc) {
+      this.setState({uploadComplete: true});
+    }
+    else {
+      this.setState({uploadComplete: false});
     }
   }
 
@@ -76,30 +73,48 @@ class Insurance extends React.Component {
       <div>
         <Formsy.Form onValid={this.enableButton}
                      onInvalid={this.disableButton}>
-          {this.props.primary === true && (
+          <div>
+            <h3>Please take a picture of the <b>front</b> of your {this.state.insuranceType} insurance card</h3>
+            <UploadImage getScreenshotSrc={this.getPrimaryScreenshotSrc} />
+            <div className="spacer-small"></div>
+          </div>
+
+          <div>
+            <h3>Please take a picture of the <b>back</b> of your {this.state.insuranceType} insurance card</h3>
+            <UploadImage getScreenshotSrc={this.getSecondaryScreenshotSrc} />
+          </div>
+
+          { this.state.uploadComplete && this.props.primary ? (
             <div>
-              <h3>Please upload a picture of your primary insurance card</h3>
-              <UploadImage getScreenshotSrc={this.getPrimaryScreenshotSrc} />
-              <div className="spacer-small"></div>
+              <h3>Do you have a secondary form of health insurance?</h3>
+              <RaisedButton label="Yes"
+                            secondary={true}
+                            style={styles.leftButton}
+                            onTouchTap={() => this.props.handleOtherSecIns(true)} />
+              <RaisedButton label="No"
+                            secondary={true}
+                            onTouchTap={() => this.props.handleEdit(5)} />
             </div>
+          ) : (
+            <div></div>
           )}
 
-          {this.props.secondary === true && (
+          {this.props.secondary ? (
             <div>
-              <h3>Please upload a picture of your secondary insurance card</h3>
-              <UploadImage getScreenshotSrc={this.getSecondaryScreenshotSrc} />
+              <RaisedButton label="Back"
+                            secondary={true}
+                            style={styles.leftButton}
+                            onTouchTap={() => {}} />
+              <RaisedButton label="Next"
+                            disabled={this.state.uploadComplete}
+                            secondary={true}
+                            onTouchTap={() => this.props.handleEdit(5)} />
             </div>
+          ) : (
+            <div></div>
           )}
 
           <div className="spacer"></div>
-          <StepButtons handleEdit={this.props.handleEdit}
-                       handleNext={this.props.handleNext}
-                       handlePrev={this.props.handlePrev}
-                       insuring={true}
-                       reviewing={this.props.reviewing}
-                       saveValues={this.props.saveValues}
-                       stepIndex={this.props.stepIndex}
-                       validated={this.state.uploadComplete} />
         </Formsy.Form>
       </div>
     );

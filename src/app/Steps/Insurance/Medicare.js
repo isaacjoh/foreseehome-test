@@ -82,14 +82,14 @@ const MedicarePrimaryQuestion = function(props){
   return (
     <div>
       <h3>Do you have health insurance (e.g. Medicare)?</h3>
-        <div>
-          <RaisedButton label="Yes"
-                        secondary={true}
-                        style={styles.leftButton}
-                        onTouchTap={() => props.handleMedicarePrim(true)} />
-          <RaisedButton label="No"
-                        secondary={true}
-                        onTouchTap={() => this.props.handleEdit(5)} />
+      <div>
+        <RaisedButton label="Yes"
+                      secondary={true}
+                      style={styles.leftButton}
+                      onTouchTap={() => props.handleMedicarePrim(true)} />
+        <RaisedButton label="No"
+                      secondary={true}
+                      onTouchTap={() => props.handleNext()} />
       </div>
       <div className="spacer"></div>
       <StepButtons data={{}}
@@ -184,47 +184,34 @@ class Medicare extends React.Component {
 
   getInsuranceSubStep(){
     if (this.state.hasOtherSecIns === true) {
-      return ( <Insurance primary={true}
+      return ( <Insurance primary={false}
                           secondary={true}
                           getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
-                          getSecondaryScreenshotSrc={this.props.getSecondaryScreenshotSrc}
                           handleEdit={this.handleEdit.bind(this)}
                           handleNext={this.props.handleNext}
                           handlePrev={this.props.handlePrev}
                           reviewing={this.props.reviewing}
                           saveValues={this.props.saveValues}
                           stepIndex={this.props.stepIndex} /> )
-    }
-
-    if (this.state.hasOtherSecIns === false) {
-      return ( <Insurance primary={true}
-                          secondary={false}
-                          getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
-                          handleEdit={this.handleEdit.bind(this)}
-                          handleNext={this.props.handleNext}
-                          handlePrev={this.props.handlePrev}
-                          reviewing={this.props.reviewing}
-                          saveValues={this.props.saveValues}
-                          stepIndex={this.props.stepIndex} /> )
-    }
-
-    if(this.state.hasOtherIns === true) {
-      return ( <OtherSecondaryInsurance handleEdit={this.handleEdit.bind(this)}
-                                        handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
-    }
-
-    if(this.state.hasOtherIns === false) {
-      return ( <NoInsurance handleEdit={this.handleEdit.bind(this)} /> )
     }
 
     if(this.state.isMedicarePrim === null) {
-      return ( <MedicarePrimaryQuestion handlePrev={this.props.handlePrev}
+      return ( <MedicarePrimaryQuestion handleNext={this.props.handleNext}
+                                        handlePrev={this.props.handlePrev}
                                         handleMedicarePrim={this.handleMedicarePrim.bind(this)} /> )
     }
 
     if(this.state.isMedicarePrim === true) {
-      return ( <OtherSecondaryInsurance handleEdit={this.handleEdit.bind(this)}
-                                        handleOtherSecIns={this.handleOtherSecIns.bind(this)} /> )
+      return ( <Insurance primary={true}
+                          secondary={false}
+                          getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
+                          handleOtherSecIns={this.handleOtherSecIns.bind(this)}
+                          handleEdit={this.handleEdit.bind(this)}
+                          handleNext={this.props.handleNext}
+                          handlePrev={this.props.handlePrev}
+                          reviewing={this.props.reviewing}
+                          saveValues={this.props.saveValues}
+                          stepIndex={this.props.stepIndex} /> )
     }
   }
 

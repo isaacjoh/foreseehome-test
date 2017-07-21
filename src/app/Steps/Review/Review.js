@@ -88,9 +88,19 @@ const Review = React.createClass({
       };
 
     let insuranceData = {
-      'Primary Insurance': data.primaryInsFrontSrc,
-      'Secondary Insurance': data.secondaryInsFrontSrc
+      'Primary Insurance Front': data.primaryInsFrontSrc,
+      'Secondary Insurance Front': data.secondaryInsFrontSrc,
+      'Primary Insurance Back': data.primaryInsBackSrc,
+      'Secondary Insurance Back': data.secondaryInsBackSrc
     };
+
+    let prescriptionData = {
+      'Prescription': data.prescriptionSrc
+    }
+
+    let rxNumberData = {
+      'Rx Number': data.rxNumber
+    }
 
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
@@ -101,7 +111,7 @@ const Review = React.createClass({
           </h4>
 
           {
-            isTablet ? (
+            prescriptionData['Prescription'] ? (
               <ReviewImages title="Prescription Information"
                             data={prescriptionData}
                             step={1}
@@ -109,7 +119,7 @@ const Review = React.createClass({
                             handleNext={this.props.handleNext} />
             ) : (
               <ReviewTables title="Prescription Information"
-                            data={prescriptionData}
+                            data={rxNumberData}
                             step={1}
                             handleEdit={this.props.handleEdit}
                             handleNext={this.props.handleNext} />

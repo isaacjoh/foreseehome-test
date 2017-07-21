@@ -65,7 +65,7 @@ class HorizontalLinearStepper extends React.Component {
         zip: null,
         phone: null,
         email: null,
-        rxNumber: null,
+        rxNumber: '',
         primaryInsFrontSrc: null,
         primaryInsBackSrc: null,
         secondaryInsFrontSrc: null,
@@ -116,6 +116,8 @@ class HorizontalLinearStepper extends React.Component {
       });
     }
 
+    console.log(stepIndex);
+
     if (stepIndex === 4) {
       this.setState({
         reviewing: true
@@ -143,22 +145,10 @@ class HorizontalLinearStepper extends React.Component {
     this.setState({fieldValues: fieldValues});
   }
 
+  getPrimaryScreenshotSrc = (src, insuranceType) => {
+    let field_value = {};
 
-  getPrimaryScreenshotSrc = (src) => {
-    let field_value = {
-      primaryInsFrontSrc: src
-    }
-
-    let fieldValues = this.state.fieldValues;
-    fieldValues = Object.assign({}, fieldValues, field_value);
-
-    this.setState({fieldValues: fieldValues});
-  }
-
-  getSecondaryScreenshotSrc = (src) => {
-    let field_value = {
-      secondaryInsFrontSrc: src
-    }
+    field_value[insuranceType] = src;
 
     let fieldValues = this.state.fieldValues;
     fieldValues = Object.assign({}, fieldValues, field_value);
@@ -181,6 +171,7 @@ class HorizontalLinearStepper extends React.Component {
     switch (stepIndex) {
       case 1:
         return <Prescription getPrescriptionSrc={this.getPrescriptionSrc}
+                             fieldValues={this.state.fieldValues}
                              handleEdit={this.handleEdit}
                              handleNext={this.handleNext}
                              handlePrev={this.handlePrev}
@@ -205,7 +196,6 @@ class HorizontalLinearStepper extends React.Component {
                         stepIndex={this.state.stepIndex} />;
       case 4:
         return <Medicare getPrimaryScreenshotSrc={this.getPrimaryScreenshotSrc}
-                         getSecondaryScreenshotSrc={this.getSecondaryScreenshotSrc}
                          handleEdit={this.handleEdit}
                          handleNext={this.handleNext}
                          handlePrev={this.handlePrev}

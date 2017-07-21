@@ -77,7 +77,7 @@ class StepButtons extends React.Component {
                 disabled={!this.props.validated}
                 label="Save"
                 primary={true}
-                onTouchTap={() => this.handleEdit(4)}
+                onTouchTap={() => this.handleEdit(5)}
               />
             </div>
           )}
