@@ -159,6 +159,7 @@ class Medicare extends React.Component {
   handleOtherIns(response){
     if(response === true){
       this.setState({hasOtherIns: true});
+
     } else {
       this.setState({hasOtherIns: false});
     }

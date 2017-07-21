@@ -139,7 +139,7 @@ class Prescription extends React.Component {
   }
 
   checkInputValue(value) {
-    if (value) {
+    if (value.length) {
       this.setState({
         rxNumber: value
       });
@@ -218,8 +218,7 @@ class Prescription extends React.Component {
     return (
       <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Paper style={paperStyle}>
-          <Formsy.Form onValid={this.enableButton.bind(this)}
-                       onInvalid={this.disableButton.bind(this)}>
+          <Formsy.Form>
             <h2>Step 1: Prescription Information</h2>
             {this.getPrescriptionSubStep()}
 

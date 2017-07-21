@@ -3,6 +3,7 @@ import Formsy from 'formsy-react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
+import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
     FormsySelect, FormsyText, FormsyTime, FormsyToggle, FormsyAutoComplete } from 'formsy-material-ui/lib';
@@ -14,7 +15,11 @@ import Dropzone from 'react-dropzone'
 import UploadImage from '../../Components/UploadImage';
 import StepButtons from '../../Components/StepButtons';
 
-
+const styles = {
+  leftButton: {
+    marginRight: 12
+  }
+}
 
 class Insurance extends React.Component {
   constructor(props) {
@@ -31,7 +36,6 @@ class Insurance extends React.Component {
       uploadComplete: false
     };
   }
-
 
   componentWillUpdate(nextProps, nextState) {
     const {stepIndex} = nextState;
@@ -68,6 +72,18 @@ class Insurance extends React.Component {
     }
   }
 
+  handleOtherSecIns = (response) => {
+    this.setState({
+      canSubmit: false,
+      InsFrontSrc: null,
+      InsBackSrc: null,
+      shipState: '',
+      uploadComplete: false
+    });
+
+    this.props.handleOtherSecIns(response);
+  }
+
   render() {
     return (
       <div>
@@ -82,6 +98,7 @@ class Insurance extends React.Component {
           <div>
             <h3>Please take a picture of the <b>back</b> of your {this.state.insuranceType} insurance card</h3>
             <UploadImage getScreenshotSrc={this.getSecondaryScreenshotSrc} />
+            <div className="spacer-small"></div>
           </div>
 
           { this.state.uploadComplete && this.props.primary ? (
@@ -90,7 +107,7 @@ class Insurance extends React.Component {
               <RaisedButton label="Yes"
                             secondary={true}
                             style={styles.leftButton}
-                            onTouchTap={() => this.props.handleOtherSecIns(true)} />
+                            onTouchTap={() => this.handleOtherSecIns(true)} />
               <RaisedButton label="No"
                             secondary={true}
                             onTouchTap={() => this.props.handleEdit(5)} />
@@ -101,13 +118,12 @@ class Insurance extends React.Component {
 
           {this.props.secondary ? (
             <div>
-              <RaisedButton label="Back"
-                            secondary={true}
-                            style={styles.leftButton}
-                            onTouchTap={() => {}} />
+              <FlatButton label="Back"
+                          style={styles.leftButton}
+                          onTouchTap={() => {}} />
               <RaisedButton label="Next"
                             disabled={this.state.uploadComplete}
-                            secondary={true}
+                            primary={true}
                             onTouchTap={() => this.props.handleEdit(5)} />
             </div>
           ) : (

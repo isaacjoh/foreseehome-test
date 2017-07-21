@@ -63,7 +63,6 @@ class UploadImage extends React.Component {
       imagePreviewUrl: null
     });
     this.props.getScreenshotSrc(null);
-
   }
 
   componentWillUpdate(nextProps, nextState) {
