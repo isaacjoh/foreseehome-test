@@ -186,8 +186,10 @@ class Prescription extends React.Component {
   }
 
   getPrescriptionSrc(src){
-    this.enableButton();
-    this.props.getPrescriptionSrc(src);
+    if (src) {
+      this.enableButton();
+      this.props.getPrescriptionSrc(src);
+    }
   }
 
   getPrescriptionSubStep(){

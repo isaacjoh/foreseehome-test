@@ -77,6 +77,7 @@ class Insurance extends React.Component {
       canSubmit: false,
       InsFrontSrc: null,
       InsBackSrc: null,
+      insuranceType: 'secondary',
       shipState: '',
       uploadComplete: false
     });

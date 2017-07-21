@@ -71,6 +71,7 @@ class UploadImage extends React.Component {
 
   componentWillMount() {
     this.id = newId();
+    this.onReset();
   }
 
   render() {
@@ -79,6 +80,7 @@ class UploadImage extends React.Component {
     let hide = this.state.reset ? '' : 'hide';
 
     let {imagePreviewUrl} = this.state;
+
     let $imagePreview = null;
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} />);
