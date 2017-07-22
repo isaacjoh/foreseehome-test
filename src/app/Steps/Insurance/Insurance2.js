@@ -35,6 +35,8 @@ class Insurance2 extends React.Component {
       shipState: '',
       uploadComplete: false
     };
+
+    window.scrollTo(0, 0);
   }
 
   componentWillUpdate(nextProps, nextState) {

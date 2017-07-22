@@ -268,8 +268,16 @@ input[name='state'] {
 
   .review-img button {
     position: relative !important;
-    right: -25px;
+    right: 0;
     text-align: right !important;
+    width: 100%;
+  }
+
+  .review-table button {
+    position: relative !important;
+    right: 0;
+    text-align: right !important;
+    top: -12px;
     width: 100%;
   }
 
