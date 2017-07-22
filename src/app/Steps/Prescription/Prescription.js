@@ -134,15 +134,16 @@ class Prescription extends React.Component {
       hasPrescription: false,
       showRx: false,
       reset: true,
-      rxNumber: null
+      rxNumber: this.props.fieldValues.rxNumber
     }
   }
 
   checkInputValue(value) {
+    this.setState({
+      rxNumber: value
+    });
+
     if (value.length) {
-      this.setState({
-        rxNumber: value
-      });
       this.enableButton();
     } else {
       this.disableButton();
@@ -170,14 +171,6 @@ class Prescription extends React.Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
-
-    var warn = console.warn;
-    console.warn = function(warning) {
-      if (/(setState)/.test(warning)) {
-        throw new Error(warning);
-      }
-      warn.apply(console, arguments);
-    };
   }
 
   hideRx(){
@@ -227,6 +220,10 @@ class Prescription extends React.Component {
       data = {
         rxNumber: this.state.rxNumber
       };
+    } else {
+      data = {
+        rxNumber: ''
+      }
     }
 
     return (
@@ -244,7 +241,7 @@ class Prescription extends React.Component {
                          reviewing={this.props.reviewing}
                          saveValues={this.props.saveValues}
                          stepIndex={this.props.stepIndex}
-                         validated={this.state.canSubmit} />
+                         validated={this.state.canSubmit || this.state.rxNumber} />
           </Formsy.Form>
         </Paper>
       </MuiThemeProvider>
