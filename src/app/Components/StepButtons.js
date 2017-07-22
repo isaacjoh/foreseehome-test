@@ -57,6 +57,7 @@ class StepButtons extends React.Component {
                 style={styles.backButton}
               />
               <RaisedButton
+                className={this.props.backOnly ? 'hide' : ''}
                 disabled={!this.props.validated}
                 label={this.props.stepIndex === 5 ? 'Done!' : 'Next'}
                 primary={true}

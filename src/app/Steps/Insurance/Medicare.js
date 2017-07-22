@@ -94,6 +94,7 @@ const MedicarePrimaryQuestion = function(props){
       </div>
       <div className="spacer"></div>
       <StepButtons data={{}}
+                   backOnly={true}
                    handlePrev={props.handlePrev}
                    saveValues={() => {}} />
     </div>
