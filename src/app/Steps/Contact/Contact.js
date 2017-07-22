@@ -115,7 +115,7 @@ const Contact = React.createClass({
       data = {
         address: this._address.state.value,
         city: this._city.state.value,
-        state: this._state.state.value,
+        state: this._state.state.value.toUpperCase(),
         zip: this._zip.state.value,
         phone: this._phone.state.value,
         email: this._email.state.value
