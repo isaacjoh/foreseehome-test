@@ -103,7 +103,8 @@ class HorizontalLinearStepper extends React.Component {
 
   handleEdit = (step) => {
     this.setState({
-      stepIndex: step
+      stepIndex: step,
+      reviewing: true
     });
   }
 
