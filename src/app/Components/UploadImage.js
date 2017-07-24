@@ -21,6 +21,8 @@ class UploadImage extends React.Component {
   }
 
   _handleImageChange(e) {
+    console.log('handled');
+
     e.preventDefault();
 
     let reader = new FileReader();

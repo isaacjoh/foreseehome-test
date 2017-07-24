@@ -94,13 +94,15 @@ class Insurance2 extends React.Component {
                      onInvalid={this.disableButton}>
           <div>
             <h3>Please take a picture of the <b>front</b> of your {this.state.insuranceType} insurance card</h3>
-            <UploadImage getScreenshotSrc={this.getPrimaryScreenshotSrc} />
+            <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsFrontSrc']}
+                         getScreenshotSrc={this.getPrimaryScreenshotSrc} />
             <div className="spacer-small"></div>
           </div>
 
           <div>
             <h3>Please take a picture of the <b>back</b> of your {this.state.insuranceType} insurance card</h3>
-            <UploadImage getScreenshotSrc={this.getSecondaryScreenshotSrc} />
+            <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsBackSrc']}
+                         getScreenshotSrc={this.getSecondaryScreenshotSrc} />
             <div className="spacer-small"></div>
           </div>
 

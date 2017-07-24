@@ -105,7 +105,7 @@ class Main extends React.Component {
             <MuiThemeProvider muiTheme={muiTheme}>
               <Card className="foresee-form">
                 <h2> Welcome to ForeseeHome!</h2>
-                <p>Thank you for taking the next step in AMD prevention. Let's complete your enrollment so that  you can begin monitoring as soon as possible.</p>
+                <p>Thank you for taking the next step in monitoring your AMD. Let's complete your enrollment so that you can begin using ForeseeHome as soon as possible.</p>
 
                 <div className="submit-btn-div">
                   <RaisedButton label="Let's get started" primary={true} onClick={() => this.shouldOpenForm() } />

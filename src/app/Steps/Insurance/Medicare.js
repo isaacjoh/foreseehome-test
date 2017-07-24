@@ -90,7 +90,7 @@ const MedicarePrimaryQuestion = function(props){
                       onTouchTap={() => props.handleMedicarePrim(true)} />
         <RaisedButton label="No"
                       secondary={true}
-                      onTouchTap={() => props.handleNext()} />
+                      onTouchTap={() => props.handleNext('all')} />
       </div>
       <div className="spacer"></div>
       <StepButtons data={{}}
@@ -185,8 +185,10 @@ class Medicare extends React.Component {
     this.props.handleEdit(step);
   }
 
-  handleNext(){
-    this.props.getPrimaryScreenshotSrc(null, 'primaryInsFrontSrc', true);
+  handleNext(reset){
+    if (reset) {
+      this.props.getPrimaryScreenshotSrc(null, '', reset);
+    }
     this.props.handleNext();
   }
 
@@ -194,6 +196,7 @@ class Medicare extends React.Component {
     if (this.state.hasOtherSecIns === true) {
       return ( <Insurance2 primary={false}
                            secondary={true}
+                           fieldValues={this.props.fieldValues}
                            getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
                            handleEdit={this.handleEdit.bind(this)}
                            handleNext={this.props.handleNext}
@@ -212,10 +215,11 @@ class Medicare extends React.Component {
     if(this.state.isMedicarePrim === true) {
       return ( <Insurance primary={true}
                           secondary={false}
+                          fieldValues={this.props.fieldValues}
                           getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
                           handleOtherSecIns={this.handleOtherSecIns.bind(this)}
                           handleEdit={this.handleEdit.bind(this)}
-                          handleNext={this.props.handleNext}
+                          handleNext={this.handleNext.bind(this)}
                           handlePrev={this.props.handlePrev}
                           reviewing={this.props.reviewing}
                           saveValues={this.props.saveValues}

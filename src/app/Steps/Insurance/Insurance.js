@@ -85,6 +85,10 @@ class Insurance extends React.Component {
     this.props.handleOtherSecIns(response);
   }
 
+  clearSecondaryIns = () => {
+    this.props.handleNext('secondary');
+  }
+
   render() {
     return (
       <div>
@@ -92,13 +96,15 @@ class Insurance extends React.Component {
                      onInvalid={this.disableButton}>
           <div>
             <h3>Please take a picture of the <b>front</b> of your {this.state.insuranceType} insurance card</h3>
-            <UploadImage getScreenshotSrc={this.getPrimaryScreenshotSrc} />
+            <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsFrontSrc']}
+                         getScreenshotSrc={(img) => this.getPrimaryScreenshotSrc(img)} />
             <div className="spacer-small"></div>
           </div>
 
           <div>
             <h3>Please take a picture of the <b>back</b> of your {this.state.insuranceType} insurance card</h3>
-            <UploadImage getScreenshotSrc={this.getSecondaryScreenshotSrc} />
+            <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsBackSrc']}
+                         getScreenshotSrc={(img) => this.getSecondaryScreenshotSrc(img)} />
             <div className="spacer-small"></div>
           </div>
 
@@ -111,7 +117,7 @@ class Insurance extends React.Component {
                             onTouchTap={() => this.handleOtherSecIns(true)} />
               <RaisedButton label="No"
                             secondary={true}
-                            onTouchTap={() => this.props.handleEdit(5)} />
+                            onTouchTap={() => this.clearSecondaryIns()} />
             </div>
           ) : (
             <div></div>

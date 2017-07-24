@@ -147,9 +147,12 @@ class HorizontalLinearStepper extends React.Component {
   getPrimaryScreenshotSrc = (src, insuranceType, reset) => {
     let field_value = {};
 
-    if (reset) {
+    if (reset === 'all') {
       field_value['primaryInsFrontSrc'] = null;
       field_value['primaryInsBackSrc'] = null;
+      field_value['secondaryInsFrontSrc'] = null;
+      field_value['secondaryInsBackSrc'] = null;
+    } else if (reset === 'secondary') {
       field_value['secondaryInsFrontSrc'] = null;
       field_value['secondaryInsBackSrc'] = null;
     } else {
@@ -201,7 +204,8 @@ class HorizontalLinearStepper extends React.Component {
                         saveValues={this.saveValues}
                         stepIndex={this.state.stepIndex} />;
       case 4:
-        return <Medicare getPrimaryScreenshotSrc={this.getPrimaryScreenshotSrc}
+        return <Medicare fieldValues={this.state.fieldValues}
+                         getPrimaryScreenshotSrc={this.getPrimaryScreenshotSrc}
                          handleEdit={this.handleEdit}
                          handleNext={this.handleNext}
                          handlePrev={this.handlePrev}
