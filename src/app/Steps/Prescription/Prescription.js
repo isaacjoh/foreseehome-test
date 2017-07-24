@@ -21,11 +21,11 @@ const isMobile = window.innerWidth <= 767;
 
 let rxDiv = {};
 let rxImg = {
-  height: 150,
+  height: 107,
   position: 'absolute',
   right: 0,
   top: 0,
-  width: 300
+  width: 257
 };
 
 if (isMobile) {
