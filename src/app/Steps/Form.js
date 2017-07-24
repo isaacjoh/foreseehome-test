@@ -144,10 +144,17 @@ class HorizontalLinearStepper extends React.Component {
     this.setState({fieldValues: fieldValues});
   }
 
-  getPrimaryScreenshotSrc = (src, insuranceType) => {
+  getPrimaryScreenshotSrc = (src, insuranceType, reset) => {
     let field_value = {};
 
-    field_value[insuranceType] = src;
+    if (reset) {
+      field_value['primaryInsFrontSrc'] = null;
+      field_value['primaryInsBackSrc'] = null;
+      field_value['secondaryInsFrontSrc'] = null;
+      field_value['secondaryInsBackSrc'] = null;
+    } else {
+      field_value[insuranceType] = src;
+    }
 
     let fieldValues = this.state.fieldValues;
     fieldValues = Object.assign({}, fieldValues, field_value);

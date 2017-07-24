@@ -185,6 +185,11 @@ class Medicare extends React.Component {
     this.props.handleEdit(step);
   }
 
+  handleNext(){
+    this.props.getPrimaryScreenshotSrc(null, 'primaryInsFrontSrc', true);
+    this.props.handleNext();
+  }
+
   getInsuranceSubStep(){
     if (this.state.hasOtherSecIns === true) {
       return ( <Insurance2 primary={false}
@@ -199,7 +204,7 @@ class Medicare extends React.Component {
     }
 
     if(this.state.isMedicarePrim === null) {
-      return ( <MedicarePrimaryQuestion handleNext={this.props.handleNext}
+      return ( <MedicarePrimaryQuestion handleNext={this.handleNext.bind(this)}
                                         handlePrev={this.props.handlePrev}
                                         handleMedicarePrim={this.handleMedicarePrim.bind(this)} /> )
     }
