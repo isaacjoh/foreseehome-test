@@ -248,7 +248,7 @@ input[name='state'] {
 /* for mobile */
 @media only screen and (max-width: 767px) {
   .physician-popover {
-    bottom: 103px;
+    bottom: 122px;
     position: absolute !important;
     right: 0;
   }

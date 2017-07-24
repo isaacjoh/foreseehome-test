@@ -45,13 +45,13 @@ if (isMobile) {
 
   rxImg = {
     bottom: 0,
-    height: 150,
+    height: '100%',
     left: 0,
     margin: 'auto',
     position: 'absolute',
     right: 0,
     top: 0,
-    width: 300
+    width: '100%'
   }
 }
 

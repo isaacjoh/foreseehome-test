@@ -17,6 +17,9 @@ class UploadImage extends React.Component {
 
     if (props.imagePreviewUrl) {
       this.props.getScreenshotSrc(props.imagePreviewUrl);
+      this.setState({
+        reset: true
+      })
     }
   }
 
