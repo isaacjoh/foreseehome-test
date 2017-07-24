@@ -11,21 +11,16 @@ class UploadImage extends React.Component {
       file: '',
       imagePreviewUrl: props.imagePreviewUrl || '',
       mobileImagePreviewUrl: null,
-      reset: true,
+      reset: props.imagePreviewUrl ? false : true,
       resetPreviews: null
     };
 
     if (props.imagePreviewUrl) {
       this.props.getScreenshotSrc(props.imagePreviewUrl);
-      this.setState({
-        reset: true
-      })
     }
   }
 
   _handleImageChange(e) {
-    console.log('handled');
-
     e.preventDefault();
 
     let reader = new FileReader();
@@ -94,7 +89,7 @@ class UploadImage extends React.Component {
   render() {
     const isMobile = window.innerWidth <= 1025;
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    let hide = this.state.reset ? '' : 'hide';
+    let hide = this.state.reset || !(this.props.imagePreviewUrl) ? '' : 'hide';
 
     let {imagePreviewUrl} = this.state;
 
@@ -146,13 +141,13 @@ class UploadImage extends React.Component {
                     screenshotFormat="image/jpeg" />
           </div>
 
-          <div className={this.state.file ? 'img-preview text-center' : ''}>
+          <div className={this.state.file ? 'img-preview text-center' : 'hide'}>
             {$imagePreview}
           </div>
 
           {!this.state.reset && (
             <div className="webcam-preview">
-              <img src={this.state.mobileImagePreviewUrl} alt="Preview"/>
+              <img src={this.state.mobileImagePreviewUrl || this.props.imagePreviewUrl} alt="Preview"/>
             </div>
           )}
 

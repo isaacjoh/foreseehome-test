@@ -110,7 +110,8 @@ const RxNumberUpload = function(props){
   return (
     <div>
       <h3>Please take a picture of your prescription</h3>
-      <UploadImage getScreenshotSrc={props.getPrescriptionSrc} imagePreviewUrl={props.fieldValues.prescriptionSrc} />
+      <UploadImage getScreenshotSrc={props.getPrescriptionSrc}
+                   imagePreviewUrl={props.fieldValues.prescriptionSrc} />
       <div className="spacer-small"></div>
 
       <RaisedButton
