@@ -170,6 +170,11 @@ class HorizontalLinearStepper extends React.Component {
     fieldValues = Object.assign({}, fieldValues, field_value);
 
     this.setState({fieldValues: fieldValues});
+
+    if (this.state.stepIndex === 5) {
+      console.log(fieldValues);
+      // @JAKE fieldValues is the final json output
+    }
   }
 
   submitForm = () => {
