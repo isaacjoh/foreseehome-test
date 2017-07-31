@@ -46,6 +46,7 @@ const getStyles = () => {
     }
   } else {
     stylesObj.backButton = {
+      height: '48px',
       marginRight: 12
     }
   }
@@ -56,9 +57,7 @@ const getStyles = () => {
 const Confirmation = React.createClass({
   componentDidMount() {
     window.scrollTo(0, 0);
-    window.onbeforeunload = () => {
-
-    };
+    window.onbeforeunload = () => { };
   },
 
   render() {
@@ -95,12 +94,15 @@ const Confirmation = React.createClass({
               <RaisedButton
                 label="Let's learn more!"
                 primary={true}
+                labelStyle={{fontSize: '18px'}}
                 style={styles.backButton}
                 href="http://foreseehome.com/amd-resources.html"
                 target="_blank"
               />
               <FlatButton
                 label="Home"
+                labelStyle={{fontSize: '18px'}}
+                style={{height: '48px'}}
                 onTouchTap={() => window.location.reload()}
               />
             </div>

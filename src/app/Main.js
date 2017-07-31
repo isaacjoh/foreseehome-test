@@ -108,7 +108,11 @@ class Main extends React.Component {
                 <p>Thank you for taking the next step in monitoring your AMD. Let's complete your enrollment so you can begin using ForeseeHome as soon as possible.</p>
 
                 <div className="submit-btn-div">
-                  <RaisedButton label="Let's get started" primary={true} onClick={() => this.shouldOpenForm() } />
+                  <RaisedButton label="Let's get started"
+                                primary={true}
+                                labelStyle={{fontSize: '18px'}}
+                                style={{height: '48px'}}
+                                onClick={() => this.shouldOpenForm() } />
                 </div>
               </Card>
             </MuiThemeProvider>

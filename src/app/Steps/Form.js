@@ -35,6 +35,9 @@ const getStyles = () => {
     backButton: {
       marginRight: 12,
     },
+    step: {
+      fontSize: '18px'
+    }
   };
 };
 
@@ -248,19 +251,19 @@ class HorizontalLinearStepper extends React.Component {
       <div>
         <Stepper activeStep={stepIndex - 1} style={scroll}>
           <Step>
-            <StepLabel>Prescription</StepLabel>
+            <StepLabel style={styles.step}>Prescription</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Personal</StepLabel>
+            <StepLabel style={styles.step}>Personal</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Contact</StepLabel>
+            <StepLabel style={styles.step}>Contact</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Insurance</StepLabel>
+            <StepLabel style={styles.step}>Insurance</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Review</StepLabel>
+            <StepLabel style={styles.step}>Review</StepLabel>
           </Step>
         </Stepper>
 

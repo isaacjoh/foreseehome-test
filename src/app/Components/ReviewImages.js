@@ -12,7 +12,9 @@ class ReviewImages extends React.Component {
               <div className="review-img">
                 <h4>Primary Insurance</h4>
                 <FlatButton label="Edit"
-                        onTouchTap={() => this.props.handleEdit(this.props.step)} />
+                            labelStyle={{fontSize: '18px'}}
+                            style={{height: '48px'}}
+                            onTouchTap={() => this.props.handleEdit(this.props.step)} />
                 <div className="img-preview">
                   <img src={this.props.data['Primary Insurance Front']} alt="Insurance image"/>
                 </div>
@@ -29,7 +31,9 @@ class ReviewImages extends React.Component {
                 <div className="spacer-small"></div>
                 <h4>Secondary Insurance</h4>
                 <FlatButton label="Edit"
-                        onTouchTap={() => this.props.handleEdit(this.props.step)} />
+                            labelStyle={{fontSize: '18px'}}
+                            style={{height: '48px'}}
+                            onTouchTap={() => this.props.handleEdit(this.props.step)} />
                 <div className="img-preview">
                   <img src={this.props.data['Secondary Insurance Front']} alt="Insurance image"/>
                 </div>
@@ -44,7 +48,9 @@ class ReviewImages extends React.Component {
             this.props.data['Prescription'] && (
               <div className="review-img">
                 <FlatButton label="Edit"
-                        onTouchTap={() => this.props.handleEdit(this.props.step)} />
+                            labelStyle={{fontSize: '18px'}}
+                            style={{height: '48px'}}
+                            onTouchTap={() => this.props.handleEdit(this.props.step)} />
                 <div className="img-preview">
                   <img src={this.props.data['Prescription']} alt="Prescription image"/>
                 </div>

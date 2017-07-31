@@ -64,7 +64,7 @@ const styles = {
     padding: paddingValue,
   },
   inputStyle: {
-    width: '100%'
+    fontSize: '18px'
   },
   prescriptionSectionStyle: {
     marginBottom: 0,
@@ -85,11 +85,12 @@ styles.rxImg = rxImg;
 const RxNumber = function(props){
   return (
     <div style={{position: 'relative'}}>
-      <p>What is your Rx Number?</p>
+      <h3>What is your Rx Number?</h3>
       <FormsyText floatingLabelText="Rx Number"
-                  floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular'}}
+                  floatingLabelStyle={{'fontFamily': 'acherus_grotesque_regular', 'fontSize': '18px'}}
                   name="rxNumber"
                   value={props.fieldValues.rxNumber}
+                  style={styles.inputStyle}
                   onChange={(ev, value) => props.checkInputValue(value)} />
       <IconButton className="physician-popover" id="rx" onClick={() => props.toggleShowRx()}>
         <FontIcon className="material-icons">help</FontIcon>
@@ -109,7 +110,7 @@ const RxNumber = function(props){
 const RxNumberUpload = function(props){
   return (
     <div>
-      <h3>Please take a picture of your prescription</h3>
+      <h3>Please take a picture of your prescription.</h3>
       <UploadImage getScreenshotSrc={props.getPrescriptionSrc}
                    imagePreviewUrl={props.fieldValues.prescriptionSrc} />
       <div className="spacer-small"></div>
@@ -118,6 +119,8 @@ const RxNumberUpload = function(props){
         className={props.hasPrescription ? 'hide' : ''}
         label="I don't have one"
         primary={true}
+        labelStyle={{fontSize: '18px'}}
+        style={{height: '48px'}}
         onTouchTap={props.enterRxNumber}
       />
 

@@ -31,6 +31,7 @@ const styles = {
     marginTop: 32,
   },
   leftButton: {
+    height: '48px',
     marginRight: 12,
   }
 }
@@ -42,10 +43,13 @@ const OtherInsurance = function(props){
       <div>
         <RaisedButton label="Yes"
                       secondary={true}
+                      labelStyle={{fontSize: '18px'}}
                       style={styles.leftButton}
                       onTouchTap={() => props.handleOtherIns(true)} />
         <RaisedButton label="No"
                       secondary={true}
+                      labelStyle={{fontSize: '18px'}}
+                      style={{height: '48px'}}
                       onTouchTap={() => props.handleOtherIns(false)} />
       </div>
       <div className="spacer"></div>
@@ -64,10 +68,13 @@ const OtherSecondaryInsurance = function(props){
       <div>
         <RaisedButton label="Yes"
                       secondary={true}
+                      labelStyle={{fontSize: '18px'}}
                       style={styles.leftButton}
                       onTouchTap={() => props.handleOtherSecIns(true)} />
         <RaisedButton label="No"
                       secondary={true}
+                      labelStyle={{fontSize: '18px'}}
+                      style={{height: '48px'}}
                       onTouchTap={() => props.handleEdit(5)} />
       </div>
       <div className="spacer"></div>
@@ -86,10 +93,13 @@ const MedicarePrimaryQuestion = function(props){
       <div>
         <RaisedButton label="Yes"
                       secondary={true}
+                      labelStyle={{fontSize: '18px'}}
                       style={styles.leftButton}
                       onTouchTap={() => props.handleMedicarePrim(true)} />
         <RaisedButton label="No"
                       secondary={true}
+                      labelStyle={{fontSize: '18px'}}
+                      style={{height: '48px'}}
                       onTouchTap={() => props.handleNext('all')} />
       </div>
       <div className="spacer"></div>
@@ -115,11 +125,14 @@ const NoInsurance = function(props){
         <FlatButton
           label="Back"
           onTouchTap={() => props.handleEdit(3)}
+          labelStyle={{fontSize: '18px'}}
           style={styles.leftButton}
         />
         <RaisedButton
           label="Home"
           primary={true}
+          labelStyle={{fontSize: '18px'}}
+          style={{height: '48px'}}
           onTouchTap={() => window.location.reload()}
         />
       </div>

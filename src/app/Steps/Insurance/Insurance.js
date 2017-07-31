@@ -17,6 +17,7 @@ import StepButtons from '../../Components/StepButtons';
 
 const styles = {
   leftButton: {
+    height: '48px',
     marginRight: 12
   }
 }
@@ -113,10 +114,13 @@ class Insurance extends React.Component {
               <h3>Do you have a secondary form of health insurance?</h3>
               <RaisedButton label="Yes"
                             secondary={true}
+                            labelStyle={{fontSize: '18px'}}
                             style={styles.leftButton}
                             onTouchTap={() => this.handleOtherSecIns(true)} />
               <RaisedButton label="No"
                             secondary={true}
+                            labelStyle={{fontSize: '18px'}}
+                            style={{height: '48px'}}
                             onTouchTap={() => this.clearSecondaryIns()} />
               <div className="spacer-small"></div>
             </div>
@@ -127,6 +131,7 @@ class Insurance extends React.Component {
           <div>
             <div className="spacer-medium"></div>
             <FlatButton label="Back"
+                        labelStyle={{fontSize: '18px'}}
                         style={styles.leftButton}
                         onTouchTap={() => this.props.reset(1)} />
           </div>

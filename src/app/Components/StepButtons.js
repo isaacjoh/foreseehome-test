@@ -18,6 +18,7 @@ const getStyles = () => {
     },
     backButton: {
       marginRight: 12,
+      height: '48px'
     },
   };
 };
@@ -54,6 +55,7 @@ class StepButtons extends React.Component {
                 className={this.props.stepIndex !== 1 ? '' : 'hide'}
                 label="Back"
                 onTouchTap={this.handlePrev}
+                labelStyle={{fontSize: '18px'}}
                 style={styles.backButton}
               />
               <RaisedButton
@@ -61,6 +63,8 @@ class StepButtons extends React.Component {
                 disabled={!this.props.validated}
                 label={this.props.stepIndex === 5 ? 'Done!' : 'Next'}
                 primary={true}
+                labelStyle={{fontSize: '18px'}}
+                style={{height: '48px'}}
                 onTouchTap={this.handleNext}
               />
             </div>
@@ -72,12 +76,15 @@ class StepButtons extends React.Component {
                 className={this.props.stepIndex !== 1 ? '' : 'hide'}
                 label="Back"
                 onTouchTap={this.handlePrev}
+                labelStyle={{fontSize: '18px'}}
                 style={styles.backButton}
               />
               <RaisedButton
                 disabled={!this.props.validated}
                 label="Save"
                 primary={true}
+                labelStyle={{fontSize: '18px'}}
+                style={{height: '48px'}}
                 onTouchTap={() => this.handleEdit(5)}
               />
             </div>
@@ -88,12 +95,15 @@ class StepButtons extends React.Component {
               <FlatButton
                 label="Back"
                 onTouchTap={() => this.handleEdit(3)}
+                labelStyle={{fontSize: '18px'}}
                 style={styles.backButton}
               />
               <RaisedButton
                 disabled={!this.props.validated}
                 label="Next"
                 primary={true}
+                labelStyle={{fontSize: '18px'}}
+                style={{height: '48px'}}
                 onTouchTap={() => this.handleEdit(4)}
               />
             </div>
@@ -104,12 +114,15 @@ class StepButtons extends React.Component {
               <FlatButton
                 label="Back"
                 onTouchTap={() => this.props.handleShortcut(1)}
+                labelStyle={{fontSize: '18px'}}
                 style={styles.backButton}
               />
               <RaisedButton
                 disabled={!this.props.validated}
                 label="Next"
                 primary={true}
+                labelStyle={{fontSize: '18px'}}
+                style={{height: '48px'}}
                 onTouchTap={this.handleNext}
               />
             </div>

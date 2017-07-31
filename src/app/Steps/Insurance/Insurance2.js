@@ -17,6 +17,7 @@ import StepButtons from '../../Components/StepButtons';
 
 const styles = {
   leftButton: {
+    height: '48px',
     marginRight: 12
   }
 }
@@ -109,11 +110,14 @@ class Insurance2 extends React.Component {
           <div>
             <div className="spacer-medium"></div>
             <FlatButton label="Back"
+                        labelStyle={{fontSize: '18px'}}
                         style={styles.leftButton}
                         onTouchTap={() => this.props.reset(2)} />
             <RaisedButton label="Next"
                           disabled={!this.state.uploadComplete}
                           primary={true}
+                          labelStyle={{fontSize: '18px'}}
+                          style={{height: '48px'}}
                           onTouchTap={() => {this.props.handleEdit(5)}} />
           </div>
 

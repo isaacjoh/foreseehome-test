@@ -29,6 +29,8 @@ class ReviewTables extends React.Component {
       <div className="review-table">
         <h3 className="spacer-small">{this.props.title}</h3>
         <FlatButton label="Edit"
+                    labelStyle={{fontSize: '18px'}}
+                    style={{height: '48px'}}
                     onTouchTap={() => this.props.handleEdit(this.props.step)} />
         <Table>
           <TableHeader className="hide" displaySelectAll={false}>

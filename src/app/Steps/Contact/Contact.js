@@ -58,6 +58,7 @@ const Contact = React.createClass({
       padding: paddingValue,
     },
     inputStyle: {
+      fontSize: '18px',
       width: '100%'
     },
     shippingSectionStyle: {

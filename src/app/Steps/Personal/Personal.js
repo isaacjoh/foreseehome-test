@@ -52,6 +52,7 @@ const Personal = React.createClass({
       marginTop: 32,
     },
     inputStyle: {
+      fontSize: '18px',
       width: '100%'
     },
     helperText: {
