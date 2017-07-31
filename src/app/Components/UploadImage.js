@@ -12,7 +12,8 @@ class UploadImage extends React.Component {
       imagePreviewUrl: props.imagePreviewUrl || '',
       mobileImagePreviewUrl: null,
       reset: props.imagePreviewUrl ? false : true,
-      resetPreviews: null
+      resetPreviews: null,
+      ready: false
     };
 
     if (props.imagePreviewUrl) {
@@ -82,6 +83,15 @@ class UploadImage extends React.Component {
     this.id = newId();
   }
 
+  componentDidMount() {
+    // setTimeout because clicking on yes overlapped with clicking on taking picture
+    setTimeout(() => {
+      this.setState({
+        ready: true
+      });
+    }, 250);
+  }
+
   render() {
     const isMobile = window.innerWidth <= 1025;
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -122,6 +132,7 @@ class UploadImage extends React.Component {
                  accept="image/*"
                  id={this.id}
                  capture="camera"
+                 disabled={!this.state.ready}
                  onChange={(e) => this._handleImageChange(e)} />
           <div className={this.state.file ? 'img-preview text-center' : ''}>
             {$imagePreview}
