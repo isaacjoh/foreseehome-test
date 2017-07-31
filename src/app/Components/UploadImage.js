@@ -57,10 +57,6 @@ class UploadImage extends React.Component {
     }
   };
 
-  onCapture = () => {
-
-  }
-
   onReset = () => {
     this.setState({
       reset: true,
@@ -122,8 +118,11 @@ class UploadImage extends React.Component {
           <label htmlFor={this.id} className="custom-file-upload">
             Take picture
           </label>
-          <input type="file" accept="image/*" id={this.id} capture="camera" onChange={(e) => this._handleImageChange(e)} />
-
+          <input type="file"
+                 accept="image/*"
+                 id={this.id}
+                 capture="camera"
+                 onChange={(e) => this._handleImageChange(e)} />
           <div className={this.state.file ? 'img-preview text-center' : ''}>
             {$imagePreview}
           </div>
@@ -153,10 +152,10 @@ class UploadImage extends React.Component {
 
           <RaisedButton label="Retake"
                         className="retake-btn"
-                        onClick={this.onReset}
+                        onClick={() => this.onReset()}
                         primary={true} />
 
-          <button onClick={this.capture}>
+          <button onClick={() => this.capture()}>
             <i className="material-icons">photo_camera</i>
           </button>
         </div>

@@ -105,11 +105,11 @@ class Insurance extends React.Component {
             <h3>Please take a picture of the <b>back</b> of your {this.state.insuranceType} insurance card</h3>
             <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsBackSrc']}
                          getScreenshotSrc={(img) => this.getSecondaryScreenshotSrc(img)} />
-            <div className="spacer-small"></div>
           </div>
 
           { this.state.uploadComplete && this.props.primary ? (
             <div>
+              <div className="spacer-medium"></div>
               <h3>Do you have a secondary form of health insurance?</h3>
               <RaisedButton label="Yes"
                             secondary={true}
@@ -118,26 +118,20 @@ class Insurance extends React.Component {
               <RaisedButton label="No"
                             secondary={true}
                             onTouchTap={() => this.clearSecondaryIns()} />
+              <div className="spacer-small"></div>
             </div>
           ) : (
             <div></div>
           )}
 
-          {this.props.secondary ? (
-            <div>
-              <FlatButton label="Back"
-                          style={styles.leftButton}
-                          onTouchTap={() => {}} />
-              <RaisedButton label="Next"
-                            disabled={this.state.uploadComplete}
-                            primary={true}
-                            onTouchTap={() => this.props.handleEdit(5)} />
-            </div>
-          ) : (
-            <div></div>
-          )}
+          <div>
+            <div className="spacer-medium"></div>
+            <FlatButton label="Back"
+                        style={styles.leftButton}
+                        onTouchTap={() => this.props.reset(1)} />
+          </div>
 
-          <div className="spacer"></div>
+          <div className="spacer-small"></div>
         </Formsy.Form>
       </div>
     );

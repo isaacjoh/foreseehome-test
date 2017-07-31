@@ -133,6 +133,7 @@ class Prescription extends React.Component {
     this.state = {
       canSubmit: false,
       hasPrescription: false,
+      hasRxNumber: false,
       showRx: false,
       reset: true,
       rxNumber: this.props.fieldValues.rxNumber
@@ -154,6 +155,7 @@ class Prescription extends React.Component {
   enterRxNumber() {
     isTablet = false;
     this.setState({
+      hasRxNumber: true,
       reset: true
     });
   }
@@ -212,6 +214,18 @@ class Prescription extends React.Component {
     }
   }
 
+  handleShortcut(step){
+    isTablet = true;
+    this.setState({
+      hasRxNumber: false,
+      rxNumber: null
+    });
+
+    this.disableButton();
+
+    this.props.handleShortcut(step);
+  }
+
   render() {
     let { paperStyle, inputStyle, prescriptionSectionStyle, helperText } = styles;
 
@@ -239,7 +253,9 @@ class Prescription extends React.Component {
                          handleEdit={this.props.handleEdit}
                          handleNext={this.props.handleNext}
                          handlePrev={this.props.handlePrev}
+                         handleShortcut={this.handleShortcut.bind(this)}
                          reviewing={this.props.reviewing}
+                         rxNumber={this.state.hasRxNumber}
                          saveValues={this.props.saveValues}
                          stepIndex={this.props.stepIndex}
                          validated={this.state.canSubmit || this.state.rxNumber} />

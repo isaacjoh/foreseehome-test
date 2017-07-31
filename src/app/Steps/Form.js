@@ -108,6 +108,12 @@ class HorizontalLinearStepper extends React.Component {
     });
   }
 
+  handleShortcut = (step) => {
+    this.setState({
+      stepIndex: step
+    });
+  }
+
   handleNext = () => {
     const {stepIndex} = this.state;
 
@@ -189,6 +195,7 @@ class HorizontalLinearStepper extends React.Component {
                              handleEdit={this.handleEdit}
                              handleNext={this.handleNext}
                              handlePrev={this.handlePrev}
+                             handleShortcut={this.handleShortcut}
                              reviewing={this.state.reviewing}
                              saveValues={this.saveValues}
                              stepIndex={this.state.stepIndex} />;
@@ -214,6 +221,7 @@ class HorizontalLinearStepper extends React.Component {
                          handleEdit={this.handleEdit}
                          handleNext={this.handleNext}
                          handlePrev={this.handlePrev}
+                         handleShortcut={this.handleShortcut}
                          reviewing={this.state.reviewing}
                          saveValues={this.saveValues}
                          stepIndex={this.state.stepIndex} />;

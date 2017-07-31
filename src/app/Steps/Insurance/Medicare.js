@@ -136,6 +136,12 @@ class Medicare extends React.Component {
       hasOtherSecIns: null,
       isMedicarePrim: null
     }
+
+    this.handleReset = this.handleReset.bind(this);
+    this.handleOtherSecIns = this.handleOtherSecIns.bind(this);
+    this.handleMedicarePrim = this.handleMedicarePrim.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
   componentDidMount() {
@@ -192,36 +198,54 @@ class Medicare extends React.Component {
     this.props.handleNext();
   }
 
+  handleReset(option){
+    if (option === 1) {
+      this.setState({
+        isMedicarePrim: null
+      });
+    }
+
+    if (option === 2) {
+      this.setState({
+        hasOtherSecIns: null
+      });
+    }
+  }
+
   getInsuranceSubStep(){
     if (this.state.hasOtherSecIns === true) {
       return ( <Insurance2 primary={false}
                            secondary={true}
                            fieldValues={this.props.fieldValues}
+                           handleShortcut={this.props.handleShortcut}
                            getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
-                           handleEdit={this.handleEdit.bind(this)}
+                           handleEdit={this.handleEdit}
                            handleNext={this.props.handleNext}
                            handlePrev={this.props.handlePrev}
                            reviewing={this.props.reviewing}
+                           reset={this.handleReset}
                            saveValues={this.props.saveValues}
                            stepIndex={this.props.stepIndex} /> )
     }
 
     if(this.state.isMedicarePrim === null) {
-      return ( <MedicarePrimaryQuestion handleNext={this.handleNext.bind(this)}
+      return ( <MedicarePrimaryQuestion handleNext={this.handleNext}
                                         handlePrev={this.props.handlePrev}
-                                        handleMedicarePrim={this.handleMedicarePrim.bind(this)} /> )
+                                        handleMedicarePrim={this.handleMedicarePrim} /> )
     }
 
     if(this.state.isMedicarePrim === true) {
       return ( <Insurance primary={true}
                           secondary={false}
                           fieldValues={this.props.fieldValues}
+                          handleShortcut={this.props.handleShortcut}
                           getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
-                          handleOtherSecIns={this.handleOtherSecIns.bind(this)}
-                          handleEdit={this.handleEdit.bind(this)}
-                          handleNext={this.handleNext.bind(this)}
+                          handleOtherSecIns={this.handleOtherSecIns}
+                          handleEdit={this.handleEdit}
+                          handleNext={this.handleNext}
                           handlePrev={this.props.handlePrev}
                           reviewing={this.props.reviewing}
+                          reset={this.handleReset}
                           saveValues={this.props.saveValues}
                           stepIndex={this.props.stepIndex} /> )
     }

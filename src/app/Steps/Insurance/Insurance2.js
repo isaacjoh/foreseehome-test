@@ -106,21 +106,18 @@ class Insurance2 extends React.Component {
             <div className="spacer-small"></div>
           </div>
 
-          {this.props.secondary && this.state.uploadComplete ? (
-            <div>
-              <FlatButton label="Back"
-                          style={styles.leftButton}
-                          onTouchTap={() => {this.props.handleEdit(4)}} />
-              <RaisedButton label="Next"
-                            disabled={!this.state.uploadComplete}
-                            primary={true}
-                            onTouchTap={() => {this.props.handleEdit(5)}} />
-            </div>
-          ) : (
-            <div></div>
-          )}
+          <div>
+            <div className="spacer-medium"></div>
+            <FlatButton label="Back"
+                        style={styles.leftButton}
+                        onTouchTap={() => this.props.reset(2)} />
+            <RaisedButton label="Next"
+                          disabled={!this.state.uploadComplete}
+                          primary={true}
+                          onTouchTap={() => {this.props.handleEdit(5)}} />
+          </div>
 
-          <div className="spacer"></div>
+          <div className="spacer-small"></div>
         </Formsy.Form>
       </div>
     );

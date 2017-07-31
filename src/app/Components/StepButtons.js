@@ -48,7 +48,7 @@ class StepButtons extends React.Component {
     return (
       <FormsyStub>
         {<div className="step-buttons">
-          {this.props.stepIndex !== null && !this.props.reviewing && !this.props.insuring && (
+          {this.props.stepIndex !== null && !this.props.reviewing && !this.props.insuring && !this.props.rxNumber && (
             <div style={styles.actions}>
               <FlatButton
                 className={this.props.stepIndex !== 1 ? '' : 'hide'}
@@ -95,6 +95,22 @@ class StepButtons extends React.Component {
                 label="Next"
                 primary={true}
                 onTouchTap={() => this.handleEdit(4)}
+              />
+            </div>
+          )}
+
+          {this.props.rxNumber === true && (
+            <div style={styles.actions}>
+              <FlatButton
+                label="Back"
+                onTouchTap={() => this.props.handleShortcut(1)}
+                style={styles.backButton}
+              />
+              <RaisedButton
+                disabled={!this.props.validated}
+                label="Next"
+                primary={true}
+                onTouchTap={this.handleNext}
               />
             </div>
           )}
