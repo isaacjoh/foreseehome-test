@@ -96,7 +96,7 @@ const Confirmation = React.createClass({
                           labelStyle={{fontSize: '18px'}}
                           style={styles.backButton}
                           onTouchTap={() => window.location.reload()} />
-              <RaisedButton label="Let's learn more!"
+              <RaisedButton label="Learn more!"
                             primary={true}
                             labelStyle={{fontSize: '18px'}}
                             style={{height: '48px', lineHeight: '48px'}}
