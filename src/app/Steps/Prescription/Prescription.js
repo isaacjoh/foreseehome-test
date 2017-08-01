@@ -64,7 +64,8 @@ const styles = {
     padding: paddingValue,
   },
   inputStyle: {
-    fontSize: '18px'
+    fontSize: '18px',
+    width: '100%'
   },
   prescriptionSectionStyle: {
     marginBottom: 0,
