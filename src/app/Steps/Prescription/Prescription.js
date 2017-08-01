@@ -112,16 +112,16 @@ const RxNumberUpload = function(props){
     <div>
       <h3>Please take a picture of your prescription.</h3>
       <UploadImage getScreenshotSrc={props.getPrescriptionSrc}
-                   imagePreviewUrl={props.fieldValues.prescriptionSrc} />
+                   imagePreviewUrl={props.fieldValues.prescriptionSrc}
+                   onUploadComplete={props.enableButton} />
       <div className="spacer-small"></div>
 
-      <RaisedButton
-        className={props.hasPrescription ? 'hide' : ''}
-        label="I don't have one"
-        primary={true}
-        labelStyle={{fontSize: '18px'}}
-        style={{height: '48px'}}
-        onTouchTap={props.enterRxNumber}
+      <RaisedButton className={props.hasPrescription ? 'hide' : ''}
+                    label="I don't have one"
+                    primary={true}
+                    labelStyle={{fontSize: '18px'}}
+                    style={{height: '48px'}}
+                    onTouchTap={props.enterRxNumber}
       />
 
       <div className="spacer-small"></div>
@@ -199,6 +199,10 @@ class Prescription extends React.Component {
       });
 
       this.props.getPrescriptionSrc(src);
+    } else {
+      this.setState({
+        canSubmit: false
+      });
     }
   }
 
@@ -207,6 +211,7 @@ class Prescription extends React.Component {
       return ( <RxNumberUpload getPrescriptionSrc={this.getPrescriptionSrc.bind(this)}
                                enterRxNumber={this.enterRxNumber.bind(this)}
                                hasPrescription={this.state.hasPrescription}
+                               enableButton={this.enableButton.bind(this)}
                                fieldValues={this.props.fieldValues} /> )
     } else {
       return ( <RxNumber checkInputValue={this.checkInputValue.bind(this)}

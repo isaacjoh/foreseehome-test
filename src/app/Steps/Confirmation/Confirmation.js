@@ -36,6 +36,7 @@ const getStyles = () => {
 
   if (isMobile) {
     stylesObj.backButton = {
+      height: '48px',
       marginBottom: 15
     };
 
@@ -57,7 +58,7 @@ const getStyles = () => {
 const Confirmation = React.createClass({
   componentDidMount() {
     window.scrollTo(0, 0);
-    window.onbeforeunload = () => { };
+    window.onbeforeunload = () => {};
   },
 
   render() {
@@ -91,20 +92,16 @@ const Confirmation = React.createClass({
 
           <div className="step-buttons text-center">
             <div style={styles.actions}>
-              <RaisedButton
-                label="Let's learn more!"
-                primary={true}
-                labelStyle={{fontSize: '18px'}}
-                style={styles.backButton}
-                href="http://foreseehome.com/amd-resources.html"
-                target="_blank"
-              />
-              <FlatButton
-                label="Home"
-                labelStyle={{fontSize: '18px'}}
-                style={{height: '48px'}}
-                onTouchTap={() => window.location.reload()}
-              />
+              <FlatButton label="Home"
+                          labelStyle={{fontSize: '18px'}}
+                          style={styles.backButton}
+                          onTouchTap={() => window.location.reload()} />
+              <RaisedButton label="Let's learn more!"
+                            primary={true}
+                            labelStyle={{fontSize: '18px'}}
+                            style={{height: '48px', lineHeight: '48px'}}
+                            href="http://foreseehome.com/amd-resources.html"
+                            target="_blank" />
             </div>
           </div>
         </Paper>

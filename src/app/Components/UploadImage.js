@@ -15,10 +15,6 @@ class UploadImage extends React.Component {
       resetPreviews: null,
       ready: false
     };
-
-    if (props.imagePreviewUrl) {
-      this.props.getScreenshotSrc(props.imagePreviewUrl);
-    }
   }
 
   _handleImageChange(e) {
@@ -81,6 +77,10 @@ class UploadImage extends React.Component {
 
   componentWillMount() {
     this.id = newId();
+
+    if (this.props.imagePreviewUrl) {
+      this.props.onUploadComplete();
+    }
   }
 
   componentDidMount() {
@@ -168,7 +168,7 @@ class UploadImage extends React.Component {
                         onClick={() => this.onReset()}
                         primary={true} />
 
-          <button style={{marginTop: '10px'}} onClick={() => this.capture()}>
+          <button style={{marginTop: '10px'}} onClick={() => this.capture()} disabled={!this.state.reset}>
             <i className="material-icons">photo_camera</i>
           </button>
         </div>

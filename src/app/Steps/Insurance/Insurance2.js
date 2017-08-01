@@ -31,8 +31,8 @@ class Insurance2 extends React.Component {
     this.state = {
       canSubmit: false,
       insuranceType: insuranceType,
-      InsFrontSrc: null,
-      InsBackSrc: null,
+      InsFrontSrc: props.fieldValues[insuranceType + 'InsFrontSrc'] || null,
+      InsBackSrc: props.fieldValues[insuranceType + 'InsBackSrc'] || null,
       shipState: '',
       uploadComplete: false
     };
@@ -96,14 +96,16 @@ class Insurance2 extends React.Component {
           <div>
             <h3>Please take a picture of the <b>front</b> of your {this.state.insuranceType} insurance card</h3>
             <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsFrontSrc']}
-                         getScreenshotSrc={this.getPrimaryScreenshotSrc} />
+                         getScreenshotSrc={this.getPrimaryScreenshotSrc}
+                         onUploadComplete={() => this.onUploadComplete()} />
             <div className="spacer-small"></div>
           </div>
 
           <div>
             <h3>Please take a picture of the <b>back</b> of your {this.state.insuranceType} insurance card</h3>
             <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsBackSrc']}
-                         getScreenshotSrc={this.getSecondaryScreenshotSrc} />
+                         getScreenshotSrc={this.getSecondaryScreenshotSrc}
+                         onUploadComplete={() => this.onUploadComplete()} />
             <div className="spacer-small"></div>
           </div>
 
