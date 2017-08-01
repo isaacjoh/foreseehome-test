@@ -163,10 +163,12 @@ class UploadImage extends React.Component {
 
           <RaisedButton label="Retake"
                         className="retake-btn"
+                        labelStyle={{fontSize: '18px'}}
+                        style={{height: '48px'}}
                         onClick={() => this.onReset()}
                         primary={true} />
 
-          <button onClick={() => this.capture()}>
+          <button style={{marginTop: '10px'}} onClick={() => this.capture()}>
             <i className="material-icons">photo_camera</i>
           </button>
         </div>
