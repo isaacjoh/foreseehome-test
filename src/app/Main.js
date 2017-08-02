@@ -12,8 +12,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {FormsyText} from 'formsy-material-ui/lib';
 
-import ReactModal from 'react-modal';
-
 // import HorizontalLinearStepper
 import HorizontalLinearStepper from './Steps/Form.js';
 
@@ -116,7 +114,7 @@ class Main extends React.Component {
                 </div>
               </Card>
             </MuiThemeProvider>
-      )}
+        )}
      </div>
     );
   }
