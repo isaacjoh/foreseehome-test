@@ -27,6 +27,10 @@ let rxImg = {
   top: 0,
   width: 257
 };
+let inputStyle = {
+  fontSize: '18px',
+  width: '50%'
+};
 
 if (isMobile) {
   paddingValue = 25;
@@ -52,6 +56,11 @@ if (isMobile) {
     right: 0,
     top: 0,
     width: '100%'
+  };
+
+  inputStyle = {
+    fontSize: '18px',
+    width: '100%'
   }
 }
 
@@ -62,10 +71,6 @@ const styles = {
     width: 'auto',
     margin: 'auto',
     padding: paddingValue,
-  },
-  inputStyle: {
-    fontSize: '18px',
-    width: '100%'
   },
   prescriptionSectionStyle: {
     marginBottom: 0,
@@ -82,6 +87,7 @@ const styles = {
 
 styles.rxDiv = rxDiv;
 styles.rxImg = rxImg;
+styles.inputStyle = inputStyle;
 
 const RxNumber = function(props){
   return (
