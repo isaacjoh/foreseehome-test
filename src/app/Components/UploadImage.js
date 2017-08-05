@@ -122,7 +122,7 @@ class UploadImage extends React.Component {
       )
     }
 
-    if (isMobile && iOS) {
+    if (isMobile) {
       return (
         <div className="webcam-container" key={this.id}>
           <label htmlFor={this.id} className="custom-file-upload">
@@ -141,39 +141,39 @@ class UploadImage extends React.Component {
       )
     }
 
-    if (isMobile && !iOS) {
-      return (
-        <div className="webcam-container" key={this.id}>
-          <div className={`webcam-component ${hide}`}>
-            <Webcam audio={false}
-                    onUserMedia={() => this.onCapture}
-                    ref={this.setRef}
-                    screenshotFormat="image/jpeg" />
-          </div>
+    // if (isMobile && !iOS) {
+    //   return (
+    //     <div className="webcam-container" key={this.id}>
+    //       <div className={`webcam-component ${hide}`}>
+    //         <Webcam audio={false}
+    //                 onUserMedia={() => this.onCapture}
+    //                 ref={this.setRef}
+    //                 screenshotFormat="image/jpeg" />
+    //       </div>
 
-          <div className={this.state.file ? 'img-preview text-center' : 'hide'}>
-            {$imagePreview}
-          </div>
+    //       <div className={this.state.file ? 'img-preview text-center' : 'hide'}>
+    //         {$imagePreview}
+    //       </div>
 
-          {!this.state.reset && (
-            <div className="webcam-preview">
-              <img src={this.state.mobileImagePreviewUrl || this.props.imagePreviewUrl} alt="Preview"/>
-            </div>
-          )}
+    //       {!this.state.reset && (
+    //         <div className="webcam-preview">
+    //           <img src={this.state.mobileImagePreviewUrl || this.props.imagePreviewUrl} alt="Preview"/>
+    //         </div>
+    //       )}
 
-          <RaisedButton label="Retake"
-                        className="retake-btn"
-                        labelStyle={{fontSize: '18px'}}
-                        style={{height: '48px'}}
-                        onClick={() => this.onReset()}
-                        primary={true} />
+    //       <RaisedButton label="Retake"
+    //                     className="retake-btn"
+    //                     labelStyle={{fontSize: '18px'}}
+    //                     style={{height: '48px'}}
+    //                     onClick={() => this.onReset()}
+    //                     primary={true} />
 
-          <button style={{marginTop: '10px'}} onClick={() => this.capture()} disabled={!this.state.reset}>
-            <i className="material-icons">photo_camera</i>
-          </button>
-        </div>
-      )
-    }
+    //       <button style={{marginTop: '10px'}} onClick={() => this.capture()} disabled={!this.state.reset}>
+    //         <i className="material-icons">photo_camera</i>
+    //       </button>
+    //     </div>
+    //   )
+    // }
   }
 }
 
