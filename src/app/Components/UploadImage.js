@@ -19,8 +19,7 @@ class UploadImage extends React.Component {
 
   _handleImageChange(e) {
     e.preventDefault();
-
-    let reader = new FileReader();
+    let reader = this.props.reader;
     let file = e.target.files[0];
 
     reader.onloadend = () => {
@@ -28,13 +27,16 @@ class UploadImage extends React.Component {
         this.props.getScreenshotSrc(reader.result);
       }
 
+      let URL = window.URL || window.webkitURL;
+      let urlSrc = URL.createObjectURL(file);
+
       this.setState({
         file: file,
-        imagePreviewUrl: reader.result
+        imagePreviewUrl: urlSrc
       });
     }
 
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(file);
   }
 
   setRef = (webcam) => {

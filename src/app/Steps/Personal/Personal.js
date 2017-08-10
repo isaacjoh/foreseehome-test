@@ -82,7 +82,7 @@ const Personal = React.createClass({
   },
 
   submitForm(data, reset, update) {
-    console.log('Submit form');
+
   },
 
   render() {

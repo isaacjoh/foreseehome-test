@@ -119,11 +119,11 @@ const RxNumberUpload = function(props){
       <h3>Please take a picture of your prescription.</h3>
       <UploadImage getScreenshotSrc={props.getPrescriptionSrc}
                    imagePreviewUrl={props.fieldValues.prescriptionSrc}
-                   onUploadComplete={props.enableButton} />
+                   onUploadComplete={props.enableButton}
+                   reader={props.reader} />
       <div className="spacer-small"></div>
 
-      <RaisedButton className={props.hasPrescription ? 'hide' : ''}
-                    label="I don't have one"
+      <RaisedButton label="I don't have one"
                     primary={true}
                     labelStyle={{fontSize: '18px'}}
                     style={{height: '48px'}}
@@ -218,7 +218,8 @@ class Prescription extends React.Component {
                                enterRxNumber={this.enterRxNumber.bind(this)}
                                hasPrescription={this.state.hasPrescription}
                                enableButton={this.enableButton.bind(this)}
-                               fieldValues={this.props.fieldValues} /> )
+                               fieldValues={this.props.fieldValues}
+                               reader={this.props.reader} /> )
     } else {
       return ( <RxNumber checkInputValue={this.checkInputValue.bind(this)}
                          showRx={this.state.showRx}

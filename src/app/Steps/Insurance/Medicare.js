@@ -229,6 +229,7 @@ class Medicare extends React.Component {
     if (this.state.hasOtherSecIns === true) {
       return ( <Insurance2 primary={false}
                            secondary={true}
+                           reader={this.props.reader}
                            fieldValues={this.props.fieldValues}
                            handleShortcut={this.props.handleShortcut}
                            getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}
@@ -250,6 +251,7 @@ class Medicare extends React.Component {
     if(this.state.isMedicarePrim === true) {
       return ( <Insurance primary={true}
                           secondary={false}
+                          reader={this.props.reader}
                           fieldValues={this.props.fieldValues}
                           handleShortcut={this.props.handleShortcut}
                           getPrimaryScreenshotSrc={this.props.getPrimaryScreenshotSrc}

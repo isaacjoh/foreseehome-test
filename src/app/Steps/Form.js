@@ -55,6 +55,8 @@ class HorizontalLinearStepper extends React.Component {
   constructor(props){
     super(props);
 
+    let reader = new FileReader();
+
     this.state = {
       reviewing: false,
       stepIndex: 1,
@@ -75,6 +77,7 @@ class HorizontalLinearStepper extends React.Component {
         secondaryInsBackSrc: null,
         prescriptionSrc: null
       },
+      reader: reader,
       width: window.innerWidth
     };
   }
@@ -194,6 +197,7 @@ class HorizontalLinearStepper extends React.Component {
     switch (stepIndex) {
       case 1:
         return <Prescription getPrescriptionSrc={this.getPrescriptionSrc}
+                             reader={this.state.reader}
                              fieldValues={this.state.fieldValues}
                              handleEdit={this.handleEdit}
                              handleNext={this.handleNext}
@@ -220,6 +224,7 @@ class HorizontalLinearStepper extends React.Component {
                         stepIndex={this.state.stepIndex} />;
       case 4:
         return <Medicare fieldValues={this.state.fieldValues}
+                         reader={this.state.reader}
                          getPrimaryScreenshotSrc={this.getPrimaryScreenshotSrc}
                          handleEdit={this.handleEdit}
                          handleNext={this.handleNext}

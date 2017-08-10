@@ -97,7 +97,8 @@ class Insurance2 extends React.Component {
             <h3>Please take a picture of the <b>front</b> of your {this.state.insuranceType} insurance card</h3>
             <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsFrontSrc']}
                          getScreenshotSrc={this.getPrimaryScreenshotSrc}
-                         onUploadComplete={() => this.onUploadComplete()} />
+                         onUploadComplete={() => this.onUploadComplete()}
+                         reader={this.props.reader} />
             <div className="spacer-small"></div>
           </div>
 
@@ -105,7 +106,8 @@ class Insurance2 extends React.Component {
             <h3>Please take a picture of the <b>back</b> of your {this.state.insuranceType} insurance card</h3>
             <UploadImage imagePreviewUrl={this.props.fieldValues[this.state.insuranceType + 'InsBackSrc']}
                          getScreenshotSrc={this.getSecondaryScreenshotSrc}
-                         onUploadComplete={() => this.onUploadComplete()} />
+                         onUploadComplete={() => this.onUploadComplete()}
+                         reader={this.props.reader} />
             <div className="spacer-small"></div>
           </div>
 
